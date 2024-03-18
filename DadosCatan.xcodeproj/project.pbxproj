@@ -1,0 +1,673 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CF7FC54A2BA3B2EE00E12FA0 /* DadosCatanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7FC5492BA3B2EE00E12FA0 /* DadosCatanApp.swift */; };
+		CF7FC54C2BA3B2EE00E12FA0 /* GamesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7FC54B2BA3B2EE00E12FA0 /* GamesListView.swift */; };
+		CF7FC54E2BA3B2EF00E12FA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF7FC54D2BA3B2EF00E12FA0 /* Assets.xcassets */; };
+		CF7FC5512BA3B2EF00E12FA0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF7FC5502BA3B2EF00E12FA0 /* Preview Assets.xcassets */; };
+		CF7FC55B2BA3B2EF00E12FA0 /* DadosCatanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7FC55A2BA3B2EF00E12FA0 /* DadosCatanTests.swift */; };
+		CF7FC5652BA3B2EF00E12FA0 /* DadosCatanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7FC5642BA3B2EF00E12FA0 /* DadosCatanUITests.swift */; };
+		CF7FC5672BA3B2EF00E12FA0 /* DadosCatanUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7FC5662BA3B2EF00E12FA0 /* DadosCatanUITestsLaunchTests.swift */; };
+		CF7FC5742BA3B31200E12FA0 /* DiceRoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7FC5732BA3B31200E12FA0 /* DiceRoll.swift */; };
+		CF7FC5762BA3B35300E12FA0 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7FC5752BA3B35300E12FA0 /* Game.swift */; };
+		CF7FC5782BA3B65800E12FA0 /* GameInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7FC5772BA3B65800E12FA0 /* GameInputView.swift */; };
+		CF7FC57A2BA3BB2700E12FA0 /* RollInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7FC5792BA3BB2600E12FA0 /* RollInputView.swift */; };
+		CF8070A62BA77F4D00A37BE0 /* GameDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8070A52BA77F4D00A37BE0 /* GameDetailView.swift */; };
+		CF8070A82BA78B0D00A37BE0 /* GameCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8070A72BA78B0D00A37BE0 /* GameCharts.swift */; };
+		CF8070AA2BA79B7600A37BE0 /* GameTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8070A92BA79B7600A37BE0 /* GameTable.swift */; };
+		CF8070AC2BA7A15000A37BE0 /* PlayerFacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8070AB2BA7A15000A37BE0 /* PlayerFacts.swift */; };
+		CF8070AE2BA7B9AE00A37BE0 /* GameFacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8070AD2BA7B9AE00A37BE0 /* GameFacts.swift */; };
+		CF8070B22BA8965600A37BE0 /* PDFGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8070B12BA8965600A37BE0 /* PDFGeneration.swift */; };
+		CF8070B42BA8AAD000A37BE0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8070B32BA8AAD000A37BE0 /* ContentView.swift */; };
+		CF8070B62BA8AD1D00A37BE0 /* TotalCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8070B52BA8AD1D00A37BE0 /* TotalCharts.swift */; };
+		CFC8C9BF2BA76AF5004E7F67 /* DiceRollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC8C9BE2BA76AF5004E7F67 /* DiceRollView.swift */; };
+		CFC8C9C12BA76B1D004E7F67 /* DiceSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC8C9C02BA76B1D004E7F67 /* DiceSelectionView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CF7FC5572BA3B2EF00E12FA0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF7FC53E2BA3B2EE00E12FA0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CF7FC5452BA3B2EE00E12FA0;
+			remoteInfo = DadosCatan;
+		};
+		CF7FC5612BA3B2EF00E12FA0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF7FC53E2BA3B2EE00E12FA0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CF7FC5452BA3B2EE00E12FA0;
+			remoteInfo = DadosCatan;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CF7FC5462BA3B2EE00E12FA0 /* DadosCatan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DadosCatan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF7FC5492BA3B2EE00E12FA0 /* DadosCatanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DadosCatanApp.swift; sourceTree = "<group>"; };
+		CF7FC54B2BA3B2EE00E12FA0 /* GamesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListView.swift; sourceTree = "<group>"; };
+		CF7FC54D2BA3B2EF00E12FA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CF7FC5502BA3B2EF00E12FA0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CF7FC5562BA3B2EF00E12FA0 /* DadosCatanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DadosCatanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF7FC55A2BA3B2EF00E12FA0 /* DadosCatanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DadosCatanTests.swift; sourceTree = "<group>"; };
+		CF7FC5602BA3B2EF00E12FA0 /* DadosCatanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DadosCatanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF7FC5642BA3B2EF00E12FA0 /* DadosCatanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DadosCatanUITests.swift; sourceTree = "<group>"; };
+		CF7FC5662BA3B2EF00E12FA0 /* DadosCatanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DadosCatanUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CF7FC5732BA3B31200E12FA0 /* DiceRoll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRoll.swift; sourceTree = "<group>"; };
+		CF7FC5752BA3B35300E12FA0 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		CF7FC5772BA3B65800E12FA0 /* GameInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInputView.swift; sourceTree = "<group>"; };
+		CF7FC5792BA3BB2600E12FA0 /* RollInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollInputView.swift; sourceTree = "<group>"; };
+		CF8070A52BA77F4D00A37BE0 /* GameDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailView.swift; sourceTree = "<group>"; };
+		CF8070A72BA78B0D00A37BE0 /* GameCharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCharts.swift; sourceTree = "<group>"; };
+		CF8070A92BA79B7600A37BE0 /* GameTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTable.swift; sourceTree = "<group>"; };
+		CF8070AB2BA7A15000A37BE0 /* PlayerFacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerFacts.swift; sourceTree = "<group>"; };
+		CF8070AD2BA7B9AE00A37BE0 /* GameFacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFacts.swift; sourceTree = "<group>"; };
+		CF8070B12BA8965600A37BE0 /* PDFGeneration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFGeneration.swift; sourceTree = "<group>"; };
+		CF8070B32BA8AAD000A37BE0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CF8070B52BA8AD1D00A37BE0 /* TotalCharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalCharts.swift; sourceTree = "<group>"; };
+		CFC8C9BE2BA76AF5004E7F67 /* DiceRollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRollView.swift; sourceTree = "<group>"; };
+		CFC8C9C02BA76B1D004E7F67 /* DiceSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceSelectionView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CF7FC5432BA3B2EE00E12FA0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF7FC5532BA3B2EF00E12FA0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF7FC55D2BA3B2EF00E12FA0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CF7FC53D2BA3B2EE00E12FA0 = {
+			isa = PBXGroup;
+			children = (
+				CF7FC5482BA3B2EE00E12FA0 /* DadosCatan */,
+				CF7FC5592BA3B2EF00E12FA0 /* DadosCatanTests */,
+				CF7FC5632BA3B2EF00E12FA0 /* DadosCatanUITests */,
+				CF7FC5472BA3B2EE00E12FA0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CF7FC5472BA3B2EE00E12FA0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF7FC5462BA3B2EE00E12FA0 /* DadosCatan.app */,
+				CF7FC5562BA3B2EF00E12FA0 /* DadosCatanTests.xctest */,
+				CF7FC5602BA3B2EF00E12FA0 /* DadosCatanUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF7FC5482BA3B2EE00E12FA0 /* DadosCatan */ = {
+			isa = PBXGroup;
+			children = (
+				CF7FC5492BA3B2EE00E12FA0 /* DadosCatanApp.swift */,
+				CFC8C9C22BA77D47004E7F67 /* Model */,
+				CFC8C9C32BA77D77004E7F67 /* Input */,
+				CF7FC54D2BA3B2EF00E12FA0 /* Assets.xcassets */,
+				CF7FC54F2BA3B2EF00E12FA0 /* Preview Content */,
+			);
+			path = DadosCatan;
+			sourceTree = "<group>";
+		};
+		CF7FC54F2BA3B2EF00E12FA0 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				CF7FC5502BA3B2EF00E12FA0 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CF7FC5592BA3B2EF00E12FA0 /* DadosCatanTests */ = {
+			isa = PBXGroup;
+			children = (
+				CF7FC55A2BA3B2EF00E12FA0 /* DadosCatanTests.swift */,
+			);
+			path = DadosCatanTests;
+			sourceTree = "<group>";
+		};
+		CF7FC5632BA3B2EF00E12FA0 /* DadosCatanUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CF7FC5642BA3B2EF00E12FA0 /* DadosCatanUITests.swift */,
+				CF7FC5662BA3B2EF00E12FA0 /* DadosCatanUITestsLaunchTests.swift */,
+			);
+			path = DadosCatanUITests;
+			sourceTree = "<group>";
+		};
+		CF8070A42BA77F1D00A37BE0 /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				CF8070A52BA77F4D00A37BE0 /* GameDetailView.swift */,
+				CF8070A92BA79B7600A37BE0 /* GameTable.swift */,
+				CF8070A72BA78B0D00A37BE0 /* GameCharts.swift */,
+				CF8070AD2BA7B9AE00A37BE0 /* GameFacts.swift */,
+				CF8070AB2BA7A15000A37BE0 /* PlayerFacts.swift */,
+				CF8070B52BA8AD1D00A37BE0 /* TotalCharts.swift */,
+				CF8070B12BA8965600A37BE0 /* PDFGeneration.swift */,
+			);
+			path = Stats;
+			sourceTree = "<group>";
+		};
+		CFC8C9C22BA77D47004E7F67 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF7FC5732BA3B31200E12FA0 /* DiceRoll.swift */,
+				CF7FC5752BA3B35300E12FA0 /* Game.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CFC8C9C32BA77D77004E7F67 /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				CF8070B32BA8AAD000A37BE0 /* ContentView.swift */,
+				CF7FC54B2BA3B2EE00E12FA0 /* GamesListView.swift */,
+				CF7FC5772BA3B65800E12FA0 /* GameInputView.swift */,
+				CF7FC5792BA3BB2600E12FA0 /* RollInputView.swift */,
+				CFC8C9BE2BA76AF5004E7F67 /* DiceRollView.swift */,
+				CFC8C9C02BA76B1D004E7F67 /* DiceSelectionView.swift */,
+				CF8070A42BA77F1D00A37BE0 /* Stats */,
+			);
+			path = Input;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CF7FC5452BA3B2EE00E12FA0 /* DadosCatan */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF7FC56A2BA3B2EF00E12FA0 /* Build configuration list for PBXNativeTarget "DadosCatan" */;
+			buildPhases = (
+				CF7FC5422BA3B2EE00E12FA0 /* Sources */,
+				CF7FC5432BA3B2EE00E12FA0 /* Frameworks */,
+				CF7FC5442BA3B2EE00E12FA0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DadosCatan;
+			productName = DadosCatan;
+			productReference = CF7FC5462BA3B2EE00E12FA0 /* DadosCatan.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CF7FC5552BA3B2EF00E12FA0 /* DadosCatanTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF7FC56D2BA3B2EF00E12FA0 /* Build configuration list for PBXNativeTarget "DadosCatanTests" */;
+			buildPhases = (
+				CF7FC5522BA3B2EF00E12FA0 /* Sources */,
+				CF7FC5532BA3B2EF00E12FA0 /* Frameworks */,
+				CF7FC5542BA3B2EF00E12FA0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CF7FC5582BA3B2EF00E12FA0 /* PBXTargetDependency */,
+			);
+			name = DadosCatanTests;
+			productName = DadosCatanTests;
+			productReference = CF7FC5562BA3B2EF00E12FA0 /* DadosCatanTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CF7FC55F2BA3B2EF00E12FA0 /* DadosCatanUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF7FC5702BA3B2EF00E12FA0 /* Build configuration list for PBXNativeTarget "DadosCatanUITests" */;
+			buildPhases = (
+				CF7FC55C2BA3B2EF00E12FA0 /* Sources */,
+				CF7FC55D2BA3B2EF00E12FA0 /* Frameworks */,
+				CF7FC55E2BA3B2EF00E12FA0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CF7FC5622BA3B2EF00E12FA0 /* PBXTargetDependency */,
+			);
+			name = DadosCatanUITests;
+			productName = DadosCatanUITests;
+			productReference = CF7FC5602BA3B2EF00E12FA0 /* DadosCatanUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CF7FC53E2BA3B2EE00E12FA0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					CF7FC5452BA3B2EE00E12FA0 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+					CF7FC5552BA3B2EF00E12FA0 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = CF7FC5452BA3B2EE00E12FA0;
+					};
+					CF7FC55F2BA3B2EF00E12FA0 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = CF7FC5452BA3B2EE00E12FA0;
+					};
+				};
+			};
+			buildConfigurationList = CF7FC5412BA3B2EE00E12FA0 /* Build configuration list for PBXProject "DadosCatan" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF7FC53D2BA3B2EE00E12FA0;
+			productRefGroup = CF7FC5472BA3B2EE00E12FA0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CF7FC5452BA3B2EE00E12FA0 /* DadosCatan */,
+				CF7FC5552BA3B2EF00E12FA0 /* DadosCatanTests */,
+				CF7FC55F2BA3B2EF00E12FA0 /* DadosCatanUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CF7FC5442BA3B2EE00E12FA0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF7FC5512BA3B2EF00E12FA0 /* Preview Assets.xcassets in Resources */,
+				CF7FC54E2BA3B2EF00E12FA0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF7FC5542BA3B2EF00E12FA0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF7FC55E2BA3B2EF00E12FA0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CF7FC5422BA3B2EE00E12FA0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFC8C9C12BA76B1D004E7F67 /* DiceSelectionView.swift in Sources */,
+				CF7FC54C2BA3B2EE00E12FA0 /* GamesListView.swift in Sources */,
+				CF7FC57A2BA3BB2700E12FA0 /* RollInputView.swift in Sources */,
+				CF8070AE2BA7B9AE00A37BE0 /* GameFacts.swift in Sources */,
+				CF8070AA2BA79B7600A37BE0 /* GameTable.swift in Sources */,
+				CF8070B62BA8AD1D00A37BE0 /* TotalCharts.swift in Sources */,
+				CF8070B22BA8965600A37BE0 /* PDFGeneration.swift in Sources */,
+				CF7FC5742BA3B31200E12FA0 /* DiceRoll.swift in Sources */,
+				CF8070AC2BA7A15000A37BE0 /* PlayerFacts.swift in Sources */,
+				CFC8C9BF2BA76AF5004E7F67 /* DiceRollView.swift in Sources */,
+				CF7FC5782BA3B65800E12FA0 /* GameInputView.swift in Sources */,
+				CF8070A82BA78B0D00A37BE0 /* GameCharts.swift in Sources */,
+				CF8070B42BA8AAD000A37BE0 /* ContentView.swift in Sources */,
+				CF8070A62BA77F4D00A37BE0 /* GameDetailView.swift in Sources */,
+				CF7FC54A2BA3B2EE00E12FA0 /* DadosCatanApp.swift in Sources */,
+				CF7FC5762BA3B35300E12FA0 /* Game.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF7FC5522BA3B2EF00E12FA0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF7FC55B2BA3B2EF00E12FA0 /* DadosCatanTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF7FC55C2BA3B2EF00E12FA0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF7FC5672BA3B2EF00E12FA0 /* DadosCatanUITestsLaunchTests.swift in Sources */,
+				CF7FC5652BA3B2EF00E12FA0 /* DadosCatanUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CF7FC5582BA3B2EF00E12FA0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CF7FC5452BA3B2EE00E12FA0 /* DadosCatan */;
+			targetProxy = CF7FC5572BA3B2EF00E12FA0 /* PBXContainerItemProxy */;
+		};
+		CF7FC5622BA3B2EF00E12FA0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CF7FC5452BA3B2EE00E12FA0 /* DadosCatan */;
+			targetProxy = CF7FC5612BA3B2EF00E12FA0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CF7FC5682BA3B2EF00E12FA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CF7FC5692BA3B2EF00E12FA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CF7FC56B2BA3B2EF00E12FA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DadosCatan/Preview Content\"";
+				DEVELOPMENT_TEAM = N3ST245ZGW;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.conigarcia.DadosCatan;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CF7FC56C2BA3B2EF00E12FA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DadosCatan/Preview Content\"";
+				DEVELOPMENT_TEAM = N3ST245ZGW;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.conigarcia.DadosCatan;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CF7FC56E2BA3B2EF00E12FA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N3ST245ZGW;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.conigarcia.DadosCatanTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DadosCatan.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DadosCatan";
+			};
+			name = Debug;
+		};
+		CF7FC56F2BA3B2EF00E12FA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N3ST245ZGW;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.conigarcia.DadosCatanTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DadosCatan.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DadosCatan";
+			};
+			name = Release;
+		};
+		CF7FC5712BA3B2EF00E12FA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N3ST245ZGW;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.conigarcia.DadosCatanUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DadosCatan;
+			};
+			name = Debug;
+		};
+		CF7FC5722BA3B2EF00E12FA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N3ST245ZGW;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.conigarcia.DadosCatanUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DadosCatan;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF7FC5412BA3B2EE00E12FA0 /* Build configuration list for PBXProject "DadosCatan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF7FC5682BA3B2EF00E12FA0 /* Debug */,
+				CF7FC5692BA3B2EF00E12FA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF7FC56A2BA3B2EF00E12FA0 /* Build configuration list for PBXNativeTarget "DadosCatan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF7FC56B2BA3B2EF00E12FA0 /* Debug */,
+				CF7FC56C2BA3B2EF00E12FA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF7FC56D2BA3B2EF00E12FA0 /* Build configuration list for PBXNativeTarget "DadosCatanTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF7FC56E2BA3B2EF00E12FA0 /* Debug */,
+				CF7FC56F2BA3B2EF00E12FA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF7FC5702BA3B2EF00E12FA0 /* Build configuration list for PBXNativeTarget "DadosCatanUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF7FC5712BA3B2EF00E12FA0 /* Debug */,
+				CF7FC5722BA3B2EF00E12FA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CF7FC53E2BA3B2EE00E12FA0 /* Project object */;
+}
