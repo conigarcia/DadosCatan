@@ -112,14 +112,12 @@ struct ColorChart: View {
         .chartBackground { proxy in
             if selectedSector != nil {
                 VStack {
-                    Text(String(selectedSector!))
-                        .font(.system(size: 40))
-                        .fontWeight(.heavy)
+                    Image("\(color)\(selectedSector!)")
+                        .resizable()
+                        .frame(width: 40, height: 40)
                     Text("\(values[selectedSector!-1]) \(values[selectedSector!-1] == 1 ? "vez" : "veces")")
                         .font(.caption)
                 }
-                .foregroundStyle(Color(color == "r" ? "Red Dice" : "Yellow Dice"))
-                .padding(.bottom)
             }
         }
         .chartForegroundStyleScale(domain: .automatic, range: gradient)

@@ -164,6 +164,55 @@ struct GameFacts: View {
                 .scrollTargetBehavior(.viewAligned)
                 .contentMargins(.bottom, 20, for: .scrollContent)
             }
+            
+            Section {
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(2...4, id: \.self) { act in
+                            let values: [Int] = game.act_red_values(act: act)
+                            let roll_count = values.reduce(0, +)
+                            
+                            if roll_count == 0 {
+                                VStack(alignment: .center) {
+                                    HStack {
+                                        Text("No salió")
+                                            .font(.headline)
+                                            .fontWeight(.bold)
+                                        Image("a\(act)")
+                                            .resizable()
+                                            .frame(width: 35, height: 35)
+                                    }
+                                    Text("en toda la partida")
+                                        .font(.headline)
+                                        .fontWeight(.bold)
+                                }
+                                .frame(width: 280)
+                                .padding(.horizontal)
+                            } else {
+                                VStack {
+                                    HStack {
+                                        Text("Dado rojo en tiradas de")
+                                            .font(.headline)
+                                            .fontWeight(.bold)
+                                        Image("a\(act)")
+                                            .resizable()
+                                            .frame(width: 35, height: 35)
+                                    }
+                                    .padding(.top)
+                                    
+                                    ColorChart(color: "r", values: values, roll_count: roll_count)
+                                        .frame(width: 280, height: 400)
+                                        .padding(.horizontal)
+                                }
+                            }
+                        }
+                    }
+                    .scrollTargetLayout()
+                }
+                .defaultScrollAnchor(.leading)
+                .scrollTargetBehavior(.viewAligned)
+                .contentMargins(.bottom, 20, for: .scrollContent)
+            }
         }
     }
 }

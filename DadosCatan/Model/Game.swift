@@ -192,4 +192,14 @@ class Game {
         }
         return count
     }
+    
+    func act_red_values(act: Int) -> [Int] {
+        var values = [0, 0, 0, 0, 0, 0]
+        for roll in self.rolls {
+            if roll.act_value == act {
+                values[roll.red_value-1] += 1
+            }
+        }
+        return values
+    }
 }
