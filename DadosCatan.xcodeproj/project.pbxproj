@@ -125,6 +125,7 @@
 				CF7FC5492BA3B2EE00E12FA0 /* DadosCatanApp.swift */,
 				CFC8C9C22BA77D47004E7F67 /* Model */,
 				CFC8C9C32BA77D77004E7F67 /* Input */,
+				CF8070A42BA77F1D00A37BE0 /* Stats */,
 				CF7FC54D2BA3B2EF00E12FA0 /* Assets.xcassets */,
 				CF7FC54F2BA3B2EF00E12FA0 /* Preview Content */,
 			);
@@ -188,7 +189,6 @@
 				CF7FC5792BA3BB2600E12FA0 /* RollInputView.swift */,
 				CFC8C9BE2BA76AF5004E7F67 /* DiceRollView.swift */,
 				CFC8C9C02BA76B1D004E7F67 /* DiceSelectionView.swift */,
-				CF8070A42BA77F1D00A37BE0 /* Stats */,
 			);
 			path = Input;
 			sourceTree = "<group>";

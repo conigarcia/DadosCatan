@@ -35,13 +35,26 @@ struct PlayerFacts: View {
                     }
                 }
 
-                Text("Usó el alquimista \(alchemist_rolls) \(alchemist_rolls == 1 ? "vez" : "veces")")
-                    .fontWeight(.medium)
+                HStack {
+//                    Image()
+//                        .resizable()
+//                        .frame(width: 20, height: 20)
+//                        .padding(.trailing, 5)
+                    if alchemist_rolls == 0 {
+                        Text("Nunca usó el alquimista")
+                            .fontWeight(.medium)
+                    } else {
+                        Text("Usó el alquimista \(alchemist_rolls) \(alchemist_rolls == 1 ? "vez" : "veces")")
+                            .fontWeight(.medium)
+                    }
+                }
             }
+            
             Section {
                 NumChart(values: values)
                     .padding(.vertical)
             }
+            
             Section {
                 ActChart(values: act_values, roll_count: act_values.reduce(0, +))
             }

@@ -109,7 +109,7 @@ struct PDFTotalCharts: View {
                 .padding()
             PDFColorChart(color: "y", values: yel_values, roll_count: real_roll_count)
                 .padding()
-            ActChart(values: act_values, roll_count: total_roll_count)
+            PDFActChart(values: act_values, roll_count: total_roll_count)
                 .padding()
         }
     }

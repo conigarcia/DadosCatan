@@ -129,7 +129,7 @@ class Game {
         return count
     }
     
-    func most_seven_player() -> String {
+    func most_seven_player() -> (String, Int) {
         var max_player = ""
         var max_seven: Int = .min
         for player in self.players {
@@ -139,10 +139,10 @@ class Game {
                 max_player = player
             }
         }
-        return max_player
+        return (max_player, max_seven)
     }
     
-    func least_seven_player() -> String {
+    func least_seven_player() -> (String, Int) {
         var min_player = ""
         var min_seven: Int = .max
         for player in self.players {
@@ -152,10 +152,10 @@ class Game {
                 min_player = player
             }
         }
-        return min_player
+        return (min_player, min_seven)
     }
     
-    func most_boat_player() -> String {
+    func most_boat_player() -> (String, Int) {
         var max_player = ""
         var max_boat: Int = .min
         for player in self.players {
@@ -165,10 +165,10 @@ class Game {
                 max_player = player
             }
         }
-        return max_player
+        return (max_player, max_boat)
     }
     
-    func least_boat_player() -> String {
+    func least_boat_player() -> (String, Int) {
         var min_player = ""
         var min_boat: Int = .max
         for player in self.players {
@@ -178,6 +178,6 @@ class Game {
                 min_player = player
             }
         }
-        return min_player
+        return (min_player, min_boat)
     }
 }

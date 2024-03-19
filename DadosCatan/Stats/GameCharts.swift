@@ -107,11 +107,15 @@ struct ColorChart: View {
         }
         .chartBackground { proxy in
             if selectedSector != nil {
-                Text(String(selectedSector!))
-                    .font(.system(size: 60))
-                    .fontWeight(.heavy)
-                    .foregroundStyle(Color(color == "r" ? "Red Dice" : "Yellow Dice"))
-                    .padding(.bottom)
+                VStack {
+                    Text(String(selectedSector!))
+                        .font(.system(size: 40))
+                        .fontWeight(.heavy)
+                    Text("\(values[selectedSector!-1]) \(values[selectedSector!-1] == 1 ? "vez" : "veces")")
+                        .font(.caption)
+                }
+                .foregroundStyle(Color(color == "r" ? "Red Dice" : "Yellow Dice"))
+                .padding(.bottom)
             }
         }
         .chartForegroundStyleScale(domain: .automatic, range: gradient)
@@ -138,6 +142,9 @@ struct ActChart: View {
     let roll_count: Int
     
     let act_gradient: [Color] = [.actGradient1, .actGradient2, .actGradient3, .actGradient4]
+    
+    @State private var selectedCount: Int?
+    @State private var selectedSector: Int?
 
     var body: some View {
         Chart {
@@ -145,6 +152,7 @@ struct ActChart: View {
                 let avg = Int(Float(values[num-1])*100/Float(roll_count))
                 SectorMark(
                     angle: .value("cantidad", values[num-1]),
+                    innerRadius: .ratio(0.4),
                     angularInset: 2
                 )
                 .cornerRadius(5)
@@ -157,12 +165,46 @@ struct ActChart: View {
                             .foregroundStyle(.white)
                     }
                 }
+                .opacity(selectedSector == nil ? 1.0 : (selectedSector == num ? 1.0 : 0.5))
+            }
+        }
+        .chartAngleSelection(value: $selectedCount)
+        .onChange(of: selectedCount) { oldValue, newValue in
+            if let newValue {
+                selectedSector = findSelectedSector(value: newValue)
+            } else {
+                selectedSector = nil
+            }
+        }
+        .chartBackground { proxy in
+            if selectedSector != nil {
+                VStack {
+                    Image("a\(selectedSector!)")
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                    Text("\(values[selectedSector!-1]) \(values[selectedSector!-1] == 1 ? "vez" : "veces")")
+                        .font(.caption)
+                        .foregroundStyle(.gray)
+                }
             }
         }
         .chartForegroundStyleScale(domain: .automatic, range: act_gradient)
         .chartLegend(.hidden)
         .frame(maxWidth: .infinity)
         .frame(height: 400)
+    }
+    
+    private func findSelectedSector(value: Int) -> Int? {
+        var accumulatedCount = 0
+        
+        for num in 1...4 {
+            accumulatedCount += values[num-1]
+            if value <= accumulatedCount {
+                return num
+            }
+        }
+        
+        return nil
     }
 }
 
@@ -187,7 +229,7 @@ struct PDFGameChart: View {
                 .padding()
             PDFColorChart(color: "y", values: yel_values, roll_count: real_roll_count)
                 .padding()
-            ActChart(values: act_values, roll_count: total_roll_count)
+            PDFActChart(values: act_values, roll_count: total_roll_count)
                 .padding()
         }
     }
@@ -228,5 +270,39 @@ struct PDFColorChart: View {
         .frame(maxWidth: .infinity)
         .frame(height: 400)
         .padding()
+    }
+}
+
+struct PDFActChart: View {
+    let values: [Int]
+    let roll_count: Int
+    
+    let act_gradient: [Color] = [.actGradient1, .actGradient2, .actGradient3, .actGradient4]
+
+    var body: some View {
+        Chart {
+            ForEach(1...4, id: \.self) { num in
+                let avg = Int(Float(values[num-1])*100/Float(roll_count))
+                SectorMark(
+                    angle: .value("cantidad", values[num-1]),
+                    innerRadius: .ratio(0.4),
+                    angularInset: 2
+                )
+                .cornerRadius(5)
+                .foregroundStyle(by: .value("valor", String(num)))
+                .annotation(position: .overlay) {
+                    if avg > 0 {
+                        Text(String(avg) + "%")
+                            .font(.headline)
+                            .fontWeight(.bold)
+                            .foregroundStyle(.white)
+                    }
+                }
+            }
+        }
+        .chartForegroundStyleScale(domain: .automatic, range: act_gradient)
+        .chartLegend(.hidden)
+        .frame(maxWidth: .infinity)
+        .frame(height: 400)
     }
 }

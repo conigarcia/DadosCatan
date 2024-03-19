@@ -27,7 +27,6 @@ struct GameInputView: View {
                 ForEach(1 ... 6, id: \.self) { num in
                     TextField(text: $players_input[num-1], prompt: Text("jugador \(num)")) {}
                         .autocorrectionDisabled()
-                        .autocapitalization(.none)
                 }
             }
             

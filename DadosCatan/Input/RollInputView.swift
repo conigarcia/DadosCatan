@@ -13,10 +13,12 @@ struct RollInputView: View {
     
     @State var alert = false
     @State var stats = false
+    @State var attack = false
     
     let game: Game
 
     @State var dice = DiceRoll(red_value: 1, yel_value: 1, act_value: 1)
+    @State var boat_rolls = 0
     
     var body: some View {
         VStack {
@@ -27,6 +29,13 @@ struct RollInputView: View {
             
             Button {
                 game.rolls.append(dice)
+                if dice.act_value == 1 {
+                    boat_rolls += 1
+                    if boat_rolls == 7 {
+                        attack = true
+                        boat_rolls = 0
+                    }
+                }
                 dice.reset()
             } label: {
                 Text("CARGAR")
@@ -43,6 +52,13 @@ struct RollInputView: View {
             Button {
                 dice.alchemist = true
                 game.rolls.append(dice)
+                if dice.act_value == 1 {
+                    boat_rolls += 1
+                    if boat_rolls == 7 {
+                        attack = true
+                        boat_rolls = 0
+                    }
+                }
                 dice.reset()
             } label: {
                 Text("ALQUIMISTA")
@@ -105,6 +121,28 @@ struct RollInputView: View {
         .navigationDestination(isPresented: $stats) {
             GameDetailView(game: game)
                 .navigationTitle("Estadísticas")
+        }
+        .popover(isPresented: $attack) {
+            ZStack {
+//                Color.redDice
+//                    .ignoresSafeArea()
+                
+                VStack {
+                    Text("LLEGARON LOS BÁRBAROS")
+                        .font(.system(size: 25, weight: .heavy))
+//                        .foregroundStyle(Color.white)
+                        .multilineTextAlignment(.center)
+                        .presentationDetents([.height(330)])
+                        .padding(.top, 50)
+                    
+                    Spacer()
+                    
+                    Image("a1")
+                        .resizable()
+                        .frame(width: 150, height: 150)
+                        .padding(.bottom, 50)
+                }
+            }
         }
     }
 }
