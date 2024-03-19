@@ -62,6 +62,10 @@ struct NumChart: View {
     }
 }
 
+#Preview("values") {
+    NumChart(values: [3, 2, 6, 4, 9, 13, 10, 3, 5, 5, 3])
+}
+
 struct ColorChart: View {
     let color: String
     let values: [Int]
@@ -72,7 +76,7 @@ struct ColorChart: View {
     
     var gradient: [Color] {color == "r" ? red_gradient : yel_gradient}
     
-    @State private var selectedCount: Int?
+    @State private var selectedCount: Float?
     @State private var selectedSector: Int?
 
     var body: some View {
@@ -123,12 +127,12 @@ struct ColorChart: View {
         .frame(height: 400)
     }
     
-    private func findSelectedSector(value: Int) -> Int? {
-        var accumulatedCount = 0
+    private func findSelectedSector(value: Float) -> Int? {
+        var accumulatedCount: Float = 0
         
         for num in 1...6 {
-            accumulatedCount += values[num-1]
-            if value <= accumulatedCount {
+            accumulatedCount += Float(values[num-1])
+            if value <= accumulatedCount && accumulatedCount != 0 {
                 return num
             }
         }
@@ -137,13 +141,20 @@ struct ColorChart: View {
     }
 }
 
+#Preview("red") {
+    ColorChart(color: "r", values: [8, 8, 14, 13, 6, 14], roll_count: 63)
+}
+#Preview("yellow") {
+    ColorChart(color: "y", values: [0, 0, 0, 0, 5, 5], roll_count: 10)
+}
+
 struct ActChart: View {
     let values: [Int]
     let roll_count: Int
     
     let act_gradient: [Color] = [.actGradient1, .actGradient2, .actGradient3, .actGradient4]
     
-    @State private var selectedCount: Int?
+    @State private var selectedCount: Float?
     @State private var selectedSector: Int?
 
     var body: some View {
@@ -194,18 +205,95 @@ struct ActChart: View {
         .frame(height: 400)
     }
     
-    private func findSelectedSector(value: Int) -> Int? {
-        var accumulatedCount = 0
+    private func findSelectedSector(value: Float) -> Int? {
+        var accumulatedCount: Float = 0
         
         for num in 1...4 {
-            accumulatedCount += values[num-1]
-            if value <= accumulatedCount {
+            accumulatedCount += Float(values[num-1])
+            if value <= accumulatedCount && accumulatedCount != 0 {
                 return num
             }
         }
         
         return nil
     }
+}
+
+#Preview("action") {
+    ActChart(values: [30, 9, 12, 13], roll_count: 64)
+}
+
+struct PlayerChart: View {
+    let values: [(String, Int)]
+    let roll_count: Int
+
+    @State private var selectedCount: Float?
+    @State private var selectedSector: Int?
+
+    var body: some View {
+        Chart {
+            ForEach(0..<values.count, id: \.self) { idx in
+                let avg = Int(Float(values[idx].1)*100/Float(roll_count))
+                SectorMark(
+                    angle: .value("cantidad", values[idx].1),
+                    innerRadius: .ratio(0.4),
+                    angularInset: 2
+                )
+                .cornerRadius(5)
+                .foregroundStyle(by: .value("jugador", values[idx].0))
+                .annotation(position: .overlay) {
+                    if avg > 0 {
+                        Text(String(avg) + "%")
+                            .font(.headline)
+                            .fontWeight(.bold)
+                            .foregroundStyle(.white)
+                    }
+                }
+                .opacity(selectedSector == nil ? 1.0 : (selectedSector == idx ? 1.0 : 0.5))
+            }
+        }
+        .chartAngleSelection(value: $selectedCount)
+        .onChange(of: selectedCount) { oldValue, newValue in
+            if let newValue {
+                selectedSector = findSelectedSector(value: newValue)
+            } else {
+                selectedSector = nil
+            }
+        }
+        .chartBackground { proxy in
+            if selectedSector != nil {
+                VStack {
+                    Text("\(values[selectedSector!].0)")
+                        .font(.system(size: 20, weight: .bold))
+                    Text("\(values[selectedSector!].1) \(values[selectedSector!].1 == 1 ? "vez" : "veces")")
+                        .font(.caption)
+                        .foregroundStyle(.gray)
+                }
+                .padding(.bottom)
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: 400)
+    }
+    
+    private func findSelectedSector(value: Float) -> Int? {
+        var accumulatedCount: Float = 0
+        
+        if value != 0 {
+            for idx in 0..<values.count {
+                accumulatedCount += Float(values[idx].1)
+                if value <= accumulatedCount && accumulatedCount != 0 {
+                    return idx
+                }
+            }
+        }
+        
+        return nil
+    }
+}
+
+#Preview("player") {
+    PlayerChart(values: [("coni", 3), ("cris", 2), ("toti", 1), ("fran", 3), ("moger", 2), ("juampe", 2)], roll_count: 13)
 }
 
 /* --- PDF CHARTS --- */

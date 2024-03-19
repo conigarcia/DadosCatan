@@ -180,4 +180,16 @@ class Game {
         }
         return (min_player, min_boat)
     }
+    
+    func no_num_streak(num: Int) -> Int {
+        var count = 0
+        for roll in self.rolls {
+            if roll.num_value != num {
+                count += 1
+            } else {
+                count = 0
+            }
+        }
+        return count
+    }
 }

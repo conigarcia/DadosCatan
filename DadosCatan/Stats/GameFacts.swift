@@ -46,20 +46,123 @@ struct GameFacts: View {
     
     var body: some View {
         List {
-            Section("") {
-                /* TODO: empates */
-                Fact(image: "n7", main_text: "\(most_seven.0) es el jugador que más sietes sacó", sec_text: "(\(most_seven.1) \(most_seven.1 == 1 ? "vez" : "veces"))")
-                Fact(image: "n7", main_text: "\(least_seven.0) es el jugador que menos sietes sacó", sec_text: "(\(least_seven.1) \(least_seven.1 == 1 ? "vez" : "veces"))")
-            }
-            
-            Section {
-                /* TODO: empates */
-                Fact(image: "a1", main_text: "\(most_boat.0) es el jugador que más barcos sacó", sec_text: "(\(most_boat.1) \(most_boat.1 == 1 ? "vez" : "veces"))")
-                Fact(image: "a1", main_text: "\(least_boat.0) es el jugador que menos barcos sacó", sec_text: "(\(least_boat.1) \(least_boat.1 == 1 ? "vez" : "veces"))")
+            if game.new_game {
+                Section {
+                    ForEach(5 ... 9, id: \.self) { num in
+                        let streak = game.no_num_streak(num: num)
+                        if streak >= 12 {
+                            Fact(image: "n\(num)", main_text: "El \(num) no sale hace \(streak) turnos", sec_text: "")
+                        }
+                    }
+                }
             }
             
             Section {
                 Fact(image: "a1", main_text: "Los bárbaros llegaron \(attack_rolls) \(attack_rolls == 1 ? "vez" : "veces")", sec_text: "")
+            }
+            
+            Section {
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(1...4, id: \.self) { act in
+                            let values: [(String, Int)] = game.players.map { ply in (ply, game.player_act_values(player: ply)[act-1]) }
+                            let roll_count = values.reduce(0, { res, x in res + x.1 })
+                            
+                            if roll_count == 0 {
+                                VStack(alignment: .center) {
+                                    HStack {
+                                        Text("No salió")
+                                            .font(.headline)
+                                            .fontWeight(.bold)
+                                        Image("a\(act)")
+                                            .resizable()
+                                            .frame(width: 35, height: 35)
+                                    }
+                                    Text("en toda la partida")
+                                        .font(.headline)
+                                        .fontWeight(.bold)
+                                }
+                                .frame(width: 280)
+                                .padding(.horizontal)
+                            } else {
+                                VStack {
+                                    HStack {
+                                        Text("Tiradas de")
+                                            .font(.headline)
+                                            .fontWeight(.bold)
+                                        Image("a\(act)")
+                                            .resizable()
+                                            .frame(width: 35, height: 35)
+                                        Text("por jugador")
+                                            .font(.headline)
+                                            .fontWeight(.bold)
+                                    }
+                                    .padding(.top)
+                                    
+                                    PlayerChart(values: values, roll_count: roll_count)
+                                        .frame(width: 280, height: 400)
+                                        .padding(.horizontal)
+                                }
+                            }
+                        }
+                    }
+                    .scrollTargetLayout()
+                }
+                .defaultScrollAnchor(.leading)
+                .scrollTargetBehavior(.viewAligned)
+                .contentMargins(.bottom, 20, for: .scrollContent)
+            }
+            
+            Section {
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(2...12, id: \.self) { num in
+                            let values: [(String, Int)] = game.players.map { ply in (ply, game.player_values(player: ply)[num-2]) }
+                            let roll_count = values.reduce(0, { res, x in res + x.1 })
+                            
+                            if roll_count == 0 {
+                                VStack(alignment: .center) {
+                                    HStack {
+                                        Text("No salió el")
+                                            .font(.headline)
+                                            .fontWeight(.bold)
+                                        Image("n\(num)")
+                                            .resizable()
+                                            .frame(width: 35, height: 35)
+                                    }
+                                    Text("en toda la partida")
+                                        .font(.headline)
+                                        .fontWeight(.bold)
+                                }
+                                .frame(width: 280)
+                                .padding(.horizontal)
+                            } else {
+                                VStack{
+                                    HStack {
+                                        Text("Tiradas de")
+                                            .fontWeight(.bold)
+                                            .font(.headline)
+                                        Image("n\(num)")
+                                            .resizable()
+                                            .frame(width: 35, height: 35)
+                                        Text("por jugador")
+                                            .fontWeight(.bold)
+                                            .font(.headline)
+                                    }
+                                    .padding(.top)
+                                    
+                                    PlayerChart(values: values, roll_count: roll_count)
+                                        .frame(width: 280, height: 400)
+                                        .padding(.horizontal)
+                                }
+                            }
+                        }
+                    }
+                    .scrollTargetLayout()
+                }
+                .defaultScrollAnchor(.center)
+                .scrollTargetBehavior(.viewAligned)
+                .contentMargins(.bottom, 20, for: .scrollContent)
             }
         }
     }

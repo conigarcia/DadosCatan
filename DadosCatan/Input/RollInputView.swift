@@ -101,6 +101,7 @@ struct RollInputView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     game.rolls.removeLast()
+                    /* TODO: qué pasa con la alerta de llegaron los bárbaros cuando se deshace */
                 } label: {
                     Text("Deshacer")
                 }
