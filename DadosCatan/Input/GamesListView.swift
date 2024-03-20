@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  GamesListView.swift
 //  DadosCatan
 //
 //  Created by coni garcia on 14/03/2024.

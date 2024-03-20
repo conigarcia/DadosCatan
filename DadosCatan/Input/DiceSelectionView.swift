@@ -9,34 +9,34 @@ import SwiftUI
 
 struct DiceSelectionView: View {
     @Environment(\.dismiss) var dismiss
-
+    
     var dice_color: String
     @Binding var dice: DiceRoll
-
+    
     var body: some View {
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 25) {
-                ForEach(1 ... 6, id: \.self) { num in
-                    Button {
-                        if dice_color == "r" {
-                            dice.red_value = num
-                        } else if dice_color == "y" {
-                            dice.yel_value = num
-                        } else if dice_color == "a" {
-                            if num < 5 {
-                                dice.act_value = num
-                            }
+        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 25) {
+            ForEach(1 ... 6, id: \.self) { num in
+                Button {
+                    if dice_color == "r" {
+                        dice.red_value = num
+                    } else if dice_color == "y" {
+                        dice.yel_value = num
+                    } else if dice_color == "a" {
+                        if num < 5 {
+                            dice.act_value = num
                         }
-                        dismiss()
-                    } label: {
-                        if !(dice_color == "a" && num > 4) {
-                            Image("\(dice_color)\(num)")
-                                .resizable()
-                                .frame(width: 130, height: 130)
-                        }
+                    }
+                    dismiss()
+                } label: {
+                    if !(dice_color == "a" && num > 4) {
+                        Image("\(dice_color)\(num)")
+                            .resizable()
+                            .frame(width: 130, height: 130)
                     }
                 }
             }
-            .padding(.horizontal, 45)
+        }
+        .padding(.horizontal, 45)
     }
 }
 

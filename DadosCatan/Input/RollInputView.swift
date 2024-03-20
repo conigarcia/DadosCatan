@@ -1,5 +1,5 @@
 //
-//  AddRollView.swift
+//  RollInputView.swift
 //  DadosCatan
 //
 //  Created by coni garcia on 14/03/2024.
