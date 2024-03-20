@@ -14,7 +14,10 @@ struct GameInputView: View {
     
     @State var name_input = ""
     @State var players_input = ["", "", "", "", "", ""]
+    @State var colors_input = ["orange player", "red player", "brown player", "white player", "blue player", "green player"]
     
+    let colors_options = ["orange player", "red player", "brown player", "white player", "blue player", "green player"]
+
     var body: some View {
         Form {
             Section {
@@ -25,17 +28,34 @@ struct GameInputView: View {
             
             Section("ingresar los jugadores en orden de juego") {
                 ForEach(1 ... 6, id: \.self) { num in
-                    TextField(text: $players_input[num-1], prompt: Text("jugador \(num)")) {}
-                        .autocorrectionDisabled()
+                    HStack {
+                        TextField(text: $players_input[num-1], prompt: Text("jugador \(num)")) {}
+                            .autocorrectionDisabled()
+                        Picker("color", selection: $colors_input[num-1]) {
+                            ForEach(colors_options, id: \.self) { col in
+//                                Text(col)
+                                Image(systemName: "square.fill")
+                                    .foregroundStyle(Color(col))
+                            }
+                        }
+                        .tint(Color(colors_input[num-1]))
+                        .pickerStyle(.menu)
+                        .labelsHidden()
+
+                    }
                 }
             }
             
             Button {
                 var players = [String]()
-                for ply in players_input {
-                    if ply != "" { players.append(ply)}
+                var colors = [String]()
+                for idx in 0...5 {
+                    if players_input[idx] != "" {
+                        players.append(players_input[idx])
+                        colors.append(colors_input[idx])
+                    }
                 }
-                let game = Game(name: name_input, players: players, rolls: [])
+                let game = Game(name: name_input, players: players, colors: colors, rolls: [])
                 modelContext.insert(game)
                 dismiss()
             } label: {

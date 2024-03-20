@@ -13,14 +13,16 @@ class Game {
     var name: String
     var date = Date()
     var players: [String]
+    var colors: [String]
     var rolls: [DiceRoll]
     
     var new_game = true
     
-    init(name: String, date: Date = Date(), players: [String], rolls: [DiceRoll], new_game: Bool = true) {
+    init(name: String, date: Date = Date(), players: [String], colors: [String], rolls: [DiceRoll], new_game: Bool = true) {
         self.name = name
         self.date = date
         self.players = players
+        self.colors = colors
         self.rolls = rolls
         self.new_game = new_game
     }

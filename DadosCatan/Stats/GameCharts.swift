@@ -224,6 +224,7 @@ struct ActChart: View {
 struct PlayerChart: View {
     let values: [(String, Int)]
     let roll_count: Int
+    let colors: [Color]
 
     @State private var selectedCount: Float?
     @State private var selectedSector: Int?
@@ -270,6 +271,7 @@ struct PlayerChart: View {
                 .padding(.bottom)
             }
         }
+        .chartForegroundStyleScale(domain: .automatic, range: colors)
         .frame(maxWidth: .infinity)
         .frame(height: 400)
     }
@@ -291,7 +293,7 @@ struct PlayerChart: View {
 }
 
 #Preview("player") {
-    PlayerChart(values: [("coni", 3), ("cris", 2), ("toti", 1), ("fran", 3), ("moger", 2), ("juampe", 2)], roll_count: 13)
+    PlayerChart(values: [("coni", 3), ("cris", 2), ("toti", 1), ("fran", 3), ("moger", 2), ("juampe", 2)], roll_count: 13, colors: [.orangePlayer, .redPlayer, .brownPlayer, .whitePlayer, .bluePlayer, .greenPlayer])
 }
 
 /* --- PDF CHARTS --- */

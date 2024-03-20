@@ -67,6 +67,7 @@ struct GameFacts: View {
                         ForEach(1...4, id: \.self) { act in
                             let values: [(String, Int)] = game.players.map { ply in (ply, game.player_act_values(player: ply)[act-1]) }
                             let roll_count = values.reduce(0, { res, x in res + x.1 })
+                            let colors: [Color] = game.colors.map { color in Color(color) }
                             
                             if roll_count == 0 {
                                 VStack(alignment: .center) {
@@ -99,7 +100,7 @@ struct GameFacts: View {
                                     }
                                     .padding(.top)
                                     
-                                    PlayerChart(values: values, roll_count: roll_count)
+                                    PlayerChart(values: values, roll_count: roll_count, colors: colors)
                                         .frame(width: 280, height: 400)
                                         .padding(.horizontal)
                                 }
@@ -119,7 +120,8 @@ struct GameFacts: View {
                         ForEach(2...12, id: \.self) { num in
                             let values: [(String, Int)] = game.players.map { ply in (ply, game.player_values(player: ply)[num-2]) }
                             let roll_count = values.reduce(0, { res, x in res + x.1 })
-                            
+                            let colors: [Color] = game.colors.map { color in Color(color) }
+
                             if roll_count == 0 {
                                 VStack(alignment: .center) {
                                     HStack {
@@ -151,7 +153,7 @@ struct GameFacts: View {
                                     }
                                     .padding(.top)
                                     
-                                    PlayerChart(values: values, roll_count: roll_count)
+                                    PlayerChart(values: values, roll_count: roll_count, colors: colors)
                                         .frame(width: 280, height: 400)
                                         .padding(.horizontal)
                                 }
