@@ -100,8 +100,16 @@ struct RollInputView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    game.rolls.removeLast()
-                    /* TODO: qué pasa con la alerta de llegaron los bárbaros cuando se deshace */
+                    let deleted_roll = game.rolls.removeLast()
+                    if deleted_roll.act_value == 1 {
+                        if boat_rolls > 1 {
+                            boat_rolls -= 1
+                        } else if boat_rolls == 1 {
+                            boat_rolls = 0
+                        } else {
+                            boat_rolls = 6
+                        }
+                    }
                 } label: {
                     Text("Deshacer")
                 }
