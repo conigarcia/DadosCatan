@@ -17,6 +17,8 @@ struct GameInputView: View {
     @State var colors_input = ["orange player", "red player", "brown player", "white player", "blue player", "green player"]
     
     let colors_options = ["orange player", "red player", "brown player", "white player", "blue player", "green player"]
+    
+    @State var color_selection = false
 
     var body: some View {
         Form {
@@ -31,17 +33,19 @@ struct GameInputView: View {
                     HStack {
                         TextField(text: $players_input[num-1], prompt: Text("jugador \(num)")) {}
                             .autocorrectionDisabled()
-                        Picker("color", selection: $colors_input[num-1]) {
-                            ForEach(colors_options, id: \.self) { col in
-//                                Text(col)
-                                Image(systemName: "square.fill")
-                                    .foregroundStyle(Color(col))
-                            }
-                        }
-                        .tint(Color(colors_input[num-1]))
-                        .pickerStyle(.menu)
-                        .labelsHidden()
 
+                        Menu {
+                            Picker("", selection: $colors_input[num-1]) {
+                                ForEach(colors_options, id: \.self) { color in
+                                    Image(systemName: "square.fill")
+                                        .tint(Color(color))
+                                }
+                            }
+                            .pickerStyle(.palette)
+                        } label: {
+                            Image(systemName: "square.fill")
+                                .tint(Color(colors_input[num-1]))
+                        }
                     }
                 }
             }
