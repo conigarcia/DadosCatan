@@ -17,8 +17,6 @@ struct GameInputView: View {
     @State var colors_input = ["orange player", "red player", "brown player", "white player", "blue player", "green player"]
     
     let colors_options = ["orange player", "red player", "brown player", "white player", "blue player", "green player"]
-    
-    @State var color_selection = false
 
     var body: some View {
         Form {

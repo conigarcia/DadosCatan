@@ -40,26 +40,6 @@ func get_act_values(games: [Game]) -> [Int] {
     return values
 }
 
-func get_real_roll_count(games: [Game]) -> Int {
-    var count = 0
-    for game in games {
-        for roll in game.rolls {
-            if !roll.alchemist {
-                count += 1
-            }
-        }
-    }
-    return count
-}
-
-func get_total_roll_count(games: [Game]) -> Int {
-    var count = 0
-    for game in games {
-        count += game.rolls.count
-    }
-    return count
-}
-
 struct TotalCharts: View {
     @Query(sort: \Game.date, order: .reverse) private var games: [Game]
     
@@ -67,10 +47,7 @@ struct TotalCharts: View {
     var red_values: [Int] {get_red_values(games: games)}
     var yel_values: [Int] {get_yel_values(games: games)}
     var act_values: [Int] {get_act_values(games: games)}
-    
-    var real_roll_count: Int {get_real_roll_count(games: games)}
-    var total_roll_count: Int {get_total_roll_count(games: games)}
-    
+
     var body: some View {
         List {
             Section {
@@ -78,13 +55,13 @@ struct TotalCharts: View {
                     .padding(.vertical)
             }
             Section {
-                ColorChart(color: "r", values: red_values, roll_count: real_roll_count)
+                ColorChart(color: "r", values: red_values)
             }
             Section {
-                ColorChart(color: "y", values: yel_values, roll_count: real_roll_count)
+                ColorChart(color: "y", values: yel_values)
             }
             Section {
-                ActChart(values: act_values, roll_count: total_roll_count)
+                ActChart(values: act_values)
             }
         }
     }
@@ -97,19 +74,16 @@ struct PDFTotalCharts: View {
     var red_values: [Int] {get_red_values(games: games)}
     var yel_values: [Int] {get_yel_values(games: games)}
     var act_values: [Int] {get_act_values(games: games)}
-    
-    var real_roll_count: Int {get_real_roll_count(games: games)}
-    var total_roll_count: Int {get_total_roll_count(games: games)}
-    
+
     var body: some View {
         VStack {
             NumChart(values: values)
                 .padding()
-            PDFColorChart(color: "r", values: red_values, roll_count: real_roll_count)
+            PDFColorChart(color: "r", values: red_values)
                 .padding()
-            PDFColorChart(color: "y", values: yel_values, roll_count: real_roll_count)
+            PDFColorChart(color: "y", values: yel_values)
                 .padding()
-            PDFActChart(values: act_values, roll_count: total_roll_count)
+            PDFActChart(values: act_values)
                 .padding()
         }
     }

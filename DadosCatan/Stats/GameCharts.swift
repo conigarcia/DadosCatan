@@ -8,36 +8,6 @@
 import SwiftUI
 import Charts
 
-struct GameChart: View {
-    let game: Game
-    
-    var values: [Int] {game.num_values()}
-    var red_values: [Int] {game.red_values()}
-    var yel_values: [Int] {game.yel_values()}
-    var act_values: [Int] {game.act_values()}
-    
-    var real_roll_count: Int {game.real_roll_count()}
-    var total_roll_count: Int {game.rolls.count}
-
-    var body: some View {
-        List {
-            Section {
-                NumChart(values: values)
-                    .padding(.vertical)
-            }
-            Section {
-                ColorChart(color: "r", values: red_values, roll_count: real_roll_count)
-            }
-            Section {
-                ColorChart(color: "y", values: yel_values, roll_count: real_roll_count)
-            }
-            Section {
-                ActChart(values: act_values, roll_count: total_roll_count)
-            }
-        }
-    }
-}
-
 struct NumChart: View {
     let values: [Int]
     
@@ -69,7 +39,6 @@ struct NumChart: View {
 struct ColorChart: View {
     let color: String
     let values: [Int]
-    let roll_count: Int
     
     let red_gradient: [Color] = [.redGradient1, .redGradient2, .redGradient3, .redGradient4, .redGradient5, .redGradient6]
     let yel_gradient: [Color] = [.yelGradient1, .yelGradient2, .yelGradient3, .yelGradient4, .yelGradient5, .yelGradient6]
@@ -78,11 +47,11 @@ struct ColorChart: View {
     
     @State private var selectedCount: Float?
     @State private var selectedSector: Int?
-
+    
     var body: some View {
         Chart {
             ForEach(1...6, id: \.self) { num in
-                let avg = Int(Float(values[num-1])*100/Float(roll_count))
+                let avg = Int(Float(values[num-1])*100/Float(values.reduce(0, +)))
                 SectorMark(
                     angle: .value("cantidad", values[num-1]),
                     innerRadius: .ratio(0.4),
@@ -140,25 +109,24 @@ struct ColorChart: View {
 }
 
 #Preview("red") {
-    ColorChart(color: "r", values: [8, 8, 14, 13, 6, 14], roll_count: 63)
+    ColorChart(color: "r", values: [8, 8, 14, 13, 6, 14])
 }
 #Preview("yellow") {
-    ColorChart(color: "y", values: [0, 0, 0, 0, 5, 5], roll_count: 10)
+    ColorChart(color: "y", values: [0, 0, 0, 0, 5, 5])
 }
 
 struct ActChart: View {
     let values: [Int]
-    let roll_count: Int
     
     let act_gradient: [Color] = [.actGradient1, .actGradient2, .actGradient3, .actGradient4]
     
     @State private var selectedCount: Float?
     @State private var selectedSector: Int?
-
+    
     var body: some View {
         Chart {
             ForEach(1...4, id: \.self) { num in
-                let avg = Int(Float(values[num-1])*100/Float(roll_count))
+                let avg = Int(Float(values[num-1])*100/Float(values.reduce(0, +)))
                 SectorMark(
                     angle: .value("cantidad", values[num-1]),
                     innerRadius: .ratio(0.4),
@@ -218,21 +186,20 @@ struct ActChart: View {
 }
 
 #Preview("action") {
-    ActChart(values: [30, 9, 12, 13], roll_count: 64)
+    ActChart(values: [30, 9, 12, 13])
 }
 
 struct PlayerChart: View {
     let values: [(String, Int)]
-    let roll_count: Int
     let colors: [Color]
-
+    
     @State private var selectedCount: Float?
     @State private var selectedSector: Int?
-
+    
     var body: some View {
         Chart {
-            ForEach(0..<values.count, id: \.self) { idx in
-                let avg = Int(Float(values[idx].1)*100/Float(roll_count))
+            ForEach(values.indices, id: \.self) { idx in
+                let avg = Int(Float(values[idx].1)*100/Float(values.reduce(0, { res, x in res + x.1 })))
                 SectorMark(
                     angle: .value("cantidad", values[idx].1),
                     innerRadius: .ratio(0.4),
@@ -293,7 +260,7 @@ struct PlayerChart: View {
 }
 
 #Preview("player") {
-    PlayerChart(values: [("coni", 3), ("cris", 2), ("toti", 1), ("fran", 3), ("moger", 2), ("juampe", 2)], roll_count: 13, colors: [.orangePlayer, .redPlayer, .brownPlayer, .whitePlayer, .bluePlayer, .greenPlayer])
+    PlayerChart(values: [("coni", 3), ("cris", 2), ("toti", 1), ("fran", 3), ("moger", 2), ("juampe", 2)], colors: [.orangePlayer, .redPlayer, .brownPlayer, .whitePlayer, .bluePlayer, .greenPlayer])
 }
 
 /* --- PDF CHARTS --- */
@@ -306,19 +273,132 @@ struct PDFGameChart: View {
     var yel_values: [Int] {game.yel_values()}
     var act_values: [Int] {game.act_values()}
     
-    var real_roll_count: Int {game.real_roll_count()}
-    var total_roll_count: Int {game.rolls.count}
-
     var body: some View {
-        VStack {
-            NumChart(values: values)
-                .padding()
-            PDFColorChart(color: "r", values: red_values, roll_count: real_roll_count)
-                .padding()
-            PDFColorChart(color: "y", values: yel_values, roll_count: real_roll_count)
-                .padding()
-            PDFActChart(values: act_values, roll_count: total_roll_count)
-                .padding()
+        GroupBox {
+            HStack {
+                Spacer()
+                NumChart(values: values)
+                    .padding()
+                    .frame(width: 395)
+                Spacer()
+            }
+        }
+        
+        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
+            GroupBox {
+                Text("Dado rojo")
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .frame(height: 35)
+                    .padding(.top)
+                PDFColorChart(color: "r", values: red_values)
+                    .frame(width: 260, height: 400)
+            }
+            
+            GroupBox {
+                Text("Dado amarillo")
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .frame(height: 35)
+                    .padding(.top)
+                PDFColorChart(color: "y", values: yel_values)
+                    .frame(width: 260, height: 400)
+            }
+            
+            GroupBox {
+                Text("Dado acontecimientos")
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .frame(height: 35)
+                    .padding(.top)
+                PDFActChart(values: act_values)
+                    .frame(width: 260, height: 400)
+            }
+            
+            ForEach(1...4, id: \.self) { act in
+                GroupBox {
+                    let values: [(String, Int)] = game.players.map { ply in (ply, game.player_act_values(player: ply)[act-1]) }
+                    let colors: [Color] = game.colors.map { color in Color(color) }
+                    
+                    if values.reduce(0, { res, x in res + x.1 }) == 0 {
+                        VStack(alignment: .center) {
+                            HStack {
+                                Text("No salió")
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                Image("a\(act)")
+                                    .resizable()
+                                    .frame(width: 35, height: 35)
+                            }
+                            Text("en toda la partida")
+                                .font(.headline)
+                                .fontWeight(.bold)
+                        }
+                        .frame(width: 260, height: 400)
+                    } else {
+                        VStack {
+                            HStack {
+                                Text("Tiradas de")
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                Image("a\(act)")
+                                    .resizable()
+                                    .frame(width: 35, height: 35)
+                                Text("por jugador")
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                            }
+                            .padding(.top)
+                            
+                            PDFPlayerChart(values: values, colors: colors)
+                                .frame(width: 260, height: 400)
+                        }
+                    }
+                }
+            }
+            
+            ForEach(5...15, id: \.self) { num in
+                GroupBox {
+                    let values: [(String, Int)] = game.players.map { ply in (ply, game.player_values(player: ply)[num-5]) }
+                    let colors: [Color] = game.colors.map { color in Color(color) }
+                    
+                    if values.reduce(0, { res, x in res + x.1 }) == 0 {
+                        VStack(alignment: .center) {
+                            HStack {
+                                Text("No salió el")
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                Image("n\(num-3)")
+                                    .resizable()
+                                    .frame(width: 35, height: 35)
+                            }
+                            Text("en toda la partida")
+                                .font(.headline)
+                                .fontWeight(.bold)
+                        }
+                        .frame(width: 260, height: 400)
+                    } else {
+                        VStack{
+                            HStack {
+                                Text("Tiradas de")
+                                    .fontWeight(.bold)
+                                    .font(.headline)
+                                Image("n\(num-3)")
+                                    .resizable()
+                                    .frame(width: 35, height: 35)
+                                Text("por jugador")
+                                    .fontWeight(.bold)
+                                    .font(.headline)
+                            }
+                            .padding(.top)
+                            
+                            PDFPlayerChart(values: values, colors: colors)
+                                .frame(width: 260, height: 400)
+                        }
+                    }
+                    
+                }
+            }
         }
     }
 }
@@ -326,7 +406,6 @@ struct PDFGameChart: View {
 struct PDFColorChart: View {
     let color: String
     let values: [Int]
-    let roll_count: Int
     
     let red_gradient: [Color] = [.redGradient1, .redGradient2, .redGradient3, .redGradient4, .redGradient5, .redGradient6]
     let yel_gradient: [Color] = [.yelGradient1, .yelGradient2, .yelGradient3, .yelGradient4, .yelGradient5, .yelGradient6]
@@ -336,7 +415,7 @@ struct PDFColorChart: View {
     var body: some View {
         Chart {
             ForEach(1...6, id: \.self) { num in
-                let avg = Int(Float(values[num-1])*100/Float(roll_count))
+                let avg = Int(Float(values[num-1])*100/Float(values.reduce(0, +)))
                 SectorMark(
                     angle: .value("cantidad", values[num-1]),
                     innerRadius: .ratio(0.4),
@@ -363,14 +442,13 @@ struct PDFColorChart: View {
 
 struct PDFActChart: View {
     let values: [Int]
-    let roll_count: Int
     
     let act_gradient: [Color] = [.actGradient1, .actGradient2, .actGradient3, .actGradient4]
-
+    
     var body: some View {
         Chart {
             ForEach(1...4, id: \.self) { num in
-                let avg = Int(Float(values[num-1])*100/Float(roll_count))
+                let avg = Int(Float(values[num-1])*100/Float(values.reduce(0, +)))
                 SectorMark(
                     angle: .value("cantidad", values[num-1]),
                     innerRadius: .ratio(0.4),
@@ -390,6 +468,37 @@ struct PDFActChart: View {
         }
         .chartForegroundStyleScale(domain: .automatic, range: act_gradient)
         .chartLegend(.hidden)
+        .frame(maxWidth: .infinity)
+        .frame(height: 400)
+    }
+}
+
+struct PDFPlayerChart: View {
+    let values: [(String, Int)]
+    let colors: [Color]
+    
+    var body: some View {
+        Chart {
+            ForEach(values.indices, id: \.self) { idx in
+                let avg = Int(Float(values[idx].1)*100/Float(values.reduce(0, { res, x in res + x.1 })))
+                SectorMark(
+                    angle: .value("cantidad", values[idx].1),
+                    innerRadius: .ratio(0.4),
+                    angularInset: 2
+                )
+                .cornerRadius(5)
+                .foregroundStyle(by: .value("jugador", values[idx].0))
+                .annotation(position: .overlay) {
+                    if avg > 0 {
+                        Text(String(avg) + "%")
+                            .font(.headline)
+                            .fontWeight(.bold)
+                            .foregroundStyle(.white)
+                    }
+                }
+            }
+        }
+        .chartForegroundStyleScale(domain: .automatic, range: colors)
         .frame(maxWidth: .infinity)
         .frame(height: 400)
     }

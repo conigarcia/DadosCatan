@@ -26,19 +26,10 @@ class Game {
         self.rolls = rolls
         self.new_game = new_game
     }
-
-    func real_roll_count() -> Int {
-        var count = 0
-        for roll in self.rolls {
-            if !roll.alchemist {
-                count += 1
-            }
-        }
-        return count
-    }
     
+    /* returns the amonunt of times each number was rolled */
     func num_values() -> [Int] {
-        var values = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        var values = Array(repeating: 0, count: 11)
         for roll in self.rolls {
             if !roll.alchemist {
                 values[roll.num_value-2] += 1
@@ -47,8 +38,9 @@ class Game {
         return values
     }
     
+    /* returns the amount of times each red dice face was rolled */
     func red_values() -> [Int] {
-        var values = [0, 0, 0, 0, 0, 0]
+        var values = Array(repeating: 0, count: 6)
         for roll in self.rolls {
             if !roll.alchemist {
                 values[roll.red_value-1] += 1
@@ -57,8 +49,9 @@ class Game {
         return values
     }
     
+    /* returns the amount of times each yellow dice face was rolled */
     func yel_values() -> [Int] {
-        var values = [0, 0, 0, 0, 0, 0]
+        var values = Array(repeating: 0, count: 6)
         for roll in self.rolls {
             if !roll.alchemist {
                 values[roll.yel_value-1] += 1
@@ -67,18 +60,20 @@ class Game {
         return values
     }
     
+    /* returns the amount of times each action dice face was rolled */
     func act_values() -> [Int] {
-        var values = [0, 0, 0, 0]
+        var values = Array(repeating: 0, count: 4)
         for roll in self.rolls {
             values[roll.act_value-1] += 1
         }
         return values
     }
     
+    /* returns the indeces in which the barbarians arrived */
     func attack_rolls() -> [Int] {
-        var attack_rolls: [Int] = []
+        var attack_rolls = [Int]()
         var boat_counter = 0
-        for idx in 0..<self.rolls.count {
+        for idx in self.rolls.indices {
             if self.rolls[idx].act_value == 1 {
                 boat_counter += 1
                 if boat_counter == 7 {
@@ -90,8 +85,9 @@ class Game {
         return attack_rolls
     }
     
+    /* returns the amonunt of times each number was rolled by a player */
     func player_values(player: String) -> [Int] {
-        var values = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        var values = Array(repeating: 0, count: 11)
         for (idx, roll) in self.rolls.enumerated() {
             if self.players[idx%self.players.count] == player && !roll.alchemist {
                 values[roll.num_value-2] += 1
@@ -100,8 +96,9 @@ class Game {
         return values
     }
     
+    /* returns the amount of times each action dice face was rolled by a player */
     func player_act_values(player: String) -> [Int] {
-        var values = [0, 0, 0, 0]
+        var values = Array(repeating: 0, count: 4)
         for (idx, roll) in self.rolls.enumerated() {
             if self.players[idx%self.players.count] == player {
                 values[roll.act_value-1] += 1
@@ -110,6 +107,7 @@ class Game {
         return values
     }
     
+    /* returns the amount of times a player made the barbarians arrive */
     func player_attack_rolls(player: String) -> Int {
         var count = 0
         let attack_rolls = self.attack_rolls()
@@ -121,6 +119,7 @@ class Game {
         return count
     }
     
+    /* returns the amount of times a player used the alchemist */
     func player_alchemist_rolls(player: String) -> Int {
         var count = 0
         for (idx, roll) in self.rolls.enumerated() {
@@ -130,59 +129,8 @@ class Game {
         }
         return count
     }
-    
-    func most_seven_player() -> (String, Int) {
-        var max_player = ""
-        var max_seven: Int = .min
-        for player in self.players {
-            let values = self.player_values(player: player)
-            if values[7-2] > max_seven {
-                max_seven = values[7-2]
-                max_player = player
-            }
-        }
-        return (max_player, max_seven)
-    }
-    
-    func least_seven_player() -> (String, Int) {
-        var min_player = ""
-        var min_seven: Int = .max
-        for player in self.players {
-            let values = self.player_values(player: player)
-            if values[7-2] < min_seven {
-                min_seven = values[7-2]
-                min_player = player
-            }
-        }
-        return (min_player, min_seven)
-    }
-    
-    func most_boat_player() -> (String, Int) {
-        var max_player = ""
-        var max_boat: Int = .min
-        for player in self.players {
-            let act_values = self.player_act_values(player: player)
-            if act_values[1-1] > max_boat {
-                max_boat = act_values[1-1]
-                max_player = player
-            }
-        }
-        return (max_player, max_boat)
-    }
-    
-    func least_boat_player() -> (String, Int) {
-        var min_player = ""
-        var min_boat: Int = .max
-        for player in self.players {
-            let act_values = self.player_act_values(player: player)
-            if act_values[1-1] < min_boat {
-                min_boat = act_values[1-1]
-                min_player = player
-            }
-        }
-        return (min_player, min_boat)
-    }
-    
+
+    /* returns the current streak a number has without being rolled */
     func no_num_streak(num: Int) -> Int {
         var count = 0
         for roll in self.rolls {
@@ -195,8 +143,9 @@ class Game {
         return count
     }
     
+    /* returns the amount of times each red dice face was rolled when an action was rolled */
     func act_red_values(act: Int) -> [Int] {
-        var values = [0, 0, 0, 0, 0, 0]
+        var values = Array(repeating: 0, count: 6)
         for roll in self.rolls {
             if roll.act_value == act {
                 values[roll.red_value-1] += 1

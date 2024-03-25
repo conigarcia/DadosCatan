@@ -68,24 +68,3 @@ struct GameTableRow: View {
         }
     }
 }
-
-struct PDFGameTable: View {
-    var game: Game
-    var attack_rolls: [Int] {game.attack_rolls()}
-    
-    var body: some View {
-        VStack {
-            Divider()
-            ForEach(0 ..< game.rolls.count, id: \.self) { idx in
-                let roll = game.rolls[idx]
-                let player = game.players[idx%game.players.count]
-                let is_attack_roll = attack_rolls.contains(idx)
-                GameTableRow(roll: roll, idx: idx, player: player, is_attack_roll: is_attack_roll)
-                    .padding(.horizontal)
-                    .frame(height: 35)
-                    .background(roll.alchemist ? Color.alchemist.opacity(0.2) : (is_attack_roll ? Color.redDice.opacity(0.2) : Color.white))
-                Divider()
-            }
-        }
-    }
-}

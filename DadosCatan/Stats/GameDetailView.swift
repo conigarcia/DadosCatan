@@ -16,11 +16,6 @@ struct GameDetailView: View {
                 NavigationLink {
                     GameTable(game: game)
                         .navigationTitle("Tabla")
-                        .toolbar {
-                            ToolbarItem(placement: .topBarTrailing) {
-                                ShareLink(item: tablePDF(game: game, path: "tabla \(game.date.formatted(.dateTime.day().month().year())).pdf"))
-                            }
-                        }
                 } label: {
                     HStack {
                         Image(systemName: "tablecells")
@@ -28,10 +23,10 @@ struct GameDetailView: View {
                     }
                     .font(.headline)
                 }
-                
+
                 NavigationLink {
-                    GameChart(game: game)
-                        .navigationTitle("Gráficos")
+                    GameFacts(game: game)
+                        .navigationTitle("Gráficos y Datos")
                         .toolbar {
                             ToolbarItem(placement: .topBarTrailing) {
                                 ShareLink(item: chartPDF(game: game, path: "gráficos \(game.date.formatted(.dateTime.day().month().year())).pdf"))
@@ -40,18 +35,7 @@ struct GameDetailView: View {
                 } label: {
                     HStack {
                         Image(systemName: "chart.bar.xaxis")
-                        Text("Gráficos")
-                    }
-                    .font(.headline)
-                }
-                
-                NavigationLink {
-                    GameFacts(game: game)
-                        .navigationTitle("Datos")
-                } label: {
-                    HStack {
-                        Image(systemName: "brain.filled.head.profile")
-                        Text("Datos")
+                        Text("Gráficos y Datos")
                     }
                     .font(.headline)
                 }

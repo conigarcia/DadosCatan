@@ -35,15 +35,7 @@ struct Fact: View {
 
 struct GameFacts: View {
     let game: Game
-    
-    var most_seven: (String, Int) {game.most_seven_player()}
-    var least_seven: (String, Int) {game.least_seven_player()}
-    
-    var most_boat: (String, Int) {game.most_boat_player()}
-    var least_boat: (String, Int) {game.least_boat_player()}
-    
-    var attack_rolls: Int {game.attack_rolls().count}
-    
+
     var body: some View {
         List {
             if game.new_game {
@@ -58,53 +50,47 @@ struct GameFacts: View {
             }
             
             Section {
+                let attack_rolls = game.attack_rolls().count
                 Fact(image: "a1", main_text: "Los bárbaros llegaron \(attack_rolls) \(attack_rolls == 1 ? "vez" : "veces")", sec_text: "")
             }
-            
+
             Section {
                 ScrollView(.horizontal) {
                     HStack {
-                        ForEach(1...4, id: \.self) { act in
-                            let values: [(String, Int)] = game.players.map { ply in (ply, game.player_act_values(player: ply)[act-1]) }
-                            let roll_count = values.reduce(0, { res, x in res + x.1 })
-                            let colors: [Color] = game.colors.map { color in Color(color) }
+                        let values = game.num_values()
+                        NumChart(values: values)
+                            .frame(width: 280, height: 400)
+                            .padding(.horizontal)
+
+                        ForEach(["r", "y"], id: \.self) { col in
+                            let values: [Int] = (col == "r" ? game.red_values() : game.yel_values())
                             
-                            if roll_count == 0 {
-                                VStack(alignment: .center) {
-                                    HStack {
-                                        Text("No salió")
-                                            .font(.headline)
-                                            .fontWeight(.bold)
-                                        Image("a\(act)")
-                                            .resizable()
-                                            .frame(width: 35, height: 35)
-                                    }
-                                    Text("en toda la partida")
+                            VStack {
+                                HStack {
+                                    Text("Dado \(col == "r" ? "rojo" : "amarillo")")
                                         .font(.headline)
                                         .fontWeight(.bold)
                                 }
-                                .frame(width: 280)
-                                .padding(.horizontal)
-                            } else {
-                                VStack {
-                                    HStack {
-                                        Text("Tiradas de")
-                                            .font(.headline)
-                                            .fontWeight(.bold)
-                                        Image("a\(act)")
-                                            .resizable()
-                                            .frame(width: 35, height: 35)
-                                        Text("por jugador")
-                                            .font(.headline)
-                                            .fontWeight(.bold)
-                                    }
-                                    .padding(.top)
-                                    
-                                    PlayerChart(values: values, roll_count: roll_count, colors: colors)
-                                        .frame(width: 280, height: 400)
-                                        .padding(.horizontal)
-                                }
+                                .padding(.top)
+                                
+                                ColorChart(color: col, values: values)
+                                    .frame(width: 280, height: 400)
+                                    .padding(.horizontal)
                             }
+                        }
+                        
+                        let act_values = game.act_values()
+                        VStack {
+                            HStack {
+                                Text("Dado acontecimientos")
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                            }
+                            .padding(.top)
+                            
+                            ActChart(values: act_values)
+                                .frame(width: 280, height: 400)
+                                .padding(.horizontal)
                         }
                     }
                     .scrollTargetLayout()
@@ -119,10 +105,9 @@ struct GameFacts: View {
                     HStack {
                         ForEach(2...12, id: \.self) { num in
                             let values: [(String, Int)] = game.players.map { ply in (ply, game.player_values(player: ply)[num-2]) }
-                            let roll_count = values.reduce(0, { res, x in res + x.1 })
                             let colors: [Color] = game.colors.map { color in Color(color) }
 
-                            if roll_count == 0 {
+                            if values.reduce(0, { res, x in res + x.1 }) == 0 {
                                 VStack(alignment: .center) {
                                     HStack {
                                         Text("No salió el")
@@ -153,7 +138,7 @@ struct GameFacts: View {
                                     }
                                     .padding(.top)
                                     
-                                    PlayerChart(values: values, roll_count: roll_count, colors: colors)
+                                    PlayerChart(values: values, colors: colors)
                                         .frame(width: 280, height: 400)
                                         .padding(.horizontal)
                                 }
@@ -170,11 +155,62 @@ struct GameFacts: View {
             Section {
                 ScrollView(.horizontal) {
                     HStack {
+                        ForEach(1...4, id: \.self) { act in
+                            let values: [(String, Int)] = game.players.map { ply in (ply, game.player_act_values(player: ply)[act-1]) }
+                            let colors: [Color] = game.colors.map { color in Color(color) }
+                            
+                            if values.reduce(0, { res, x in res + x.1 }) == 0 {
+                                VStack(alignment: .center) {
+                                    HStack {
+                                        Text("No salió")
+                                            .font(.headline)
+                                            .fontWeight(.bold)
+                                        Image("a\(act)")
+                                            .resizable()
+                                            .frame(width: 35, height: 35)
+                                    }
+                                    Text("en toda la partida")
+                                        .font(.headline)
+                                        .fontWeight(.bold)
+                                }
+                                .frame(width: 280)
+                                .padding(.horizontal)
+                            } else {
+                                VStack {
+                                    HStack {
+                                        Text("Tiradas de")
+                                            .font(.headline)
+                                            .fontWeight(.bold)
+                                        Image("a\(act)")
+                                            .resizable()
+                                            .frame(width: 35, height: 35)
+                                        Text("por jugador")
+                                            .font(.headline)
+                                            .fontWeight(.bold)
+                                    }
+                                    .padding(.top)
+                                    
+                                    PlayerChart(values: values, colors: colors)
+                                        .frame(width: 280, height: 400)
+                                        .padding(.horizontal)
+                                }
+                            }
+                        }
+                    }
+                    .scrollTargetLayout()
+                }
+                .defaultScrollAnchor(.leading)
+                .scrollTargetBehavior(.viewAligned)
+                .contentMargins(.bottom, 20, for: .scrollContent)
+            }
+
+            Section {
+                ScrollView(.horizontal) {
+                    HStack {
                         ForEach(2...4, id: \.self) { act in
                             let values: [Int] = game.act_red_values(act: act)
-                            let roll_count = values.reduce(0, +)
                             
-                            if roll_count == 0 {
+                            if values.reduce(0, +) == 0 {
                                 VStack(alignment: .center) {
                                     HStack {
                                         Text("No salió")
@@ -202,7 +238,7 @@ struct GameFacts: View {
                                     }
                                     .padding(.top)
                                     
-                                    ColorChart(color: "r", values: values, roll_count: roll_count)
+                                    ColorChart(color: "r", values: values)
                                         .frame(width: 280, height: 400)
                                         .padding(.horizontal)
                                 }
