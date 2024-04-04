@@ -18,7 +18,7 @@ struct NumChart: View {
                     .foregroundStyle(Color.alchemist)
                     .annotation(position: .top) {
                         Text(String(values[num-2]))
-                            .font(.caption)
+                            .font(.system(size: 10))
                             .fontWeight(.bold)
                             .frame(width: 20, height: 20)
                             .foregroundStyle(Color.alchemist)
@@ -33,7 +33,7 @@ struct NumChart: View {
 }
 
 #Preview("values") {
-    NumChart(values: [3, 2, 6, 4, 9, 13, 10, 3, 5, 5, 3])
+    NumChart(values: [3, 2, 6, 4, 9, 100, 10, 3, 5, 5, 3])
 }
 
 struct ColorChart: View {
