@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF4034D12BE44A560031C31B /* GameFactGroupBoxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4034D02BE44A560031C31B /* GameFactGroupBoxStyle.swift */; };
 		CF7FC54A2BA3B2EE00E12FA0 /* DadosCatanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7FC5492BA3B2EE00E12FA0 /* DadosCatanApp.swift */; };
 		CF7FC54C2BA3B2EE00E12FA0 /* GamesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7FC54B2BA3B2EE00E12FA0 /* GamesListView.swift */; };
 		CF7FC54E2BA3B2EF00E12FA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF7FC54D2BA3B2EF00E12FA0 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CF4034D02BE44A560031C31B /* GameFactGroupBoxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFactGroupBoxStyle.swift; sourceTree = "<group>"; };
 		CF7FC5462BA3B2EE00E12FA0 /* DadosCatan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DadosCatan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF7FC5492BA3B2EE00E12FA0 /* DadosCatanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DadosCatanApp.swift; sourceTree = "<group>"; };
 		CF7FC54B2BA3B2EE00E12FA0 /* GamesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListView.swift; sourceTree = "<group>"; };
@@ -99,6 +101,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF4034D22BE44A670031C31B /* Syles */ = {
+			isa = PBXGroup;
+			children = (
+				CF4034D02BE44A560031C31B /* GameFactGroupBoxStyle.swift */,
+			);
+			path = Syles;
+			sourceTree = "<group>";
+		};
 		CF7FC53D2BA3B2EE00E12FA0 = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +136,7 @@
 				CFC8C9C22BA77D47004E7F67 /* Model */,
 				CFC8C9C32BA77D77004E7F67 /* Input */,
 				CF8070A42BA77F1D00A37BE0 /* Stats */,
+				CF4034D22BE44A670031C31B /* Syles */,
 				CF7FC54D2BA3B2EF00E12FA0 /* Assets.xcassets */,
 				CF7FC54F2BA3B2EF00E12FA0 /* Preview Content */,
 			);
@@ -339,6 +350,7 @@
 				CF8070A62BA77F4D00A37BE0 /* GameDetailView.swift in Sources */,
 				CF7FC54A2BA3B2EE00E12FA0 /* DadosCatanApp.swift in Sources */,
 				CF7FC5762BA3B35300E12FA0 /* Game.swift in Sources */,
+				CF4034D12BE44A560031C31B /* GameFactGroupBoxStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

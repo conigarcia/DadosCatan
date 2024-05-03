@@ -49,21 +49,43 @@ struct TotalCharts: View {
     var act_values: [Int] {get_act_values(games: games)}
 
     var body: some View {
-        List {
-            Section {
+        ScrollView {
+            GroupBox {
                 NumChart(values: values)
-                    .padding(.vertical)
+                    .padding(.vertical, 10)
             }
-            Section {
+            .groupBoxStyle(.gameFact)
+            .padding(.horizontal, 25)
+            .padding(.top, 20)
+            
+            GroupBox {
                 ColorChart(color: "r", values: red_values)
+            } label: {
+                Text("Dado rojo")
             }
-            Section {
+            .groupBoxStyle(.gameFact)
+            .padding(.horizontal, 25)
+            .padding(.top, 20)
+
+            GroupBox {
                 ColorChart(color: "y", values: yel_values)
+            } label: {
+                Text("Dado amarillo")
             }
-            Section {
+            .groupBoxStyle(.gameFact)
+            .padding(.horizontal, 25)
+            .padding(.top, 20)
+
+            GroupBox {
                 ActChart(values: act_values)
+            } label: {
+                Text("Dado acontecimientos")
             }
+            .groupBoxStyle(.gameFact)
+            .padding(.horizontal, 25)
+            .padding(.top, 20)
         }
+        .background(Color(uiColor: .secondarySystemBackground))
     }
 }
 

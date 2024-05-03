@@ -18,12 +18,11 @@ struct NumChart: View {
                     .foregroundStyle(Color.alchemist)
                     .annotation(position: .top) {
                         Text(String(values[num-2]))
-                            .font(.system(size: 10))
+                            .font(.system(size: 9))
                             .fontWeight(.bold)
                             .frame(width: 20, height: 20)
                             .foregroundStyle(Color.alchemist)
-                            .background(Color.background)
-                            .clipShape(.rect(cornerRadius: 5))
+                            .background(Color(uiColor: .secondarySystemBackground), in: RoundedRectangle(cornerRadius: 5))
                     }
             }
         }
@@ -33,7 +32,7 @@ struct NumChart: View {
 }
 
 #Preview("values") {
-    NumChart(values: [3, 2, 6, 4, 9, 100, 10, 3, 5, 5, 3])
+    NumChart(values: [3, 2, 6, 4, 130, 999, 250, 3, 5, 5, 3])
 }
 
 struct ColorChart: View {

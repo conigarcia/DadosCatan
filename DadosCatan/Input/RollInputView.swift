@@ -43,8 +43,8 @@ struct RollInputView: View {
                     .fontWeight(.bold)
                     .foregroundColor(Color.black)
                     .frame(width: 250, height: 50, alignment: .center)
-                    .background(Color.background)
-                    .clipShape(.rect(cornerRadius: 15))
+                    .background(Color(uiColor: .secondarySystemBackground))
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
                     .shadow(radius: 2, x: 2, y: 2)
             }
             .padding(.bottom, 8)
@@ -67,7 +67,7 @@ struct RollInputView: View {
                     .foregroundColor(Color.white)
                     .frame(width: 250, height: 50, alignment: .center)
                     .background(Color.alchemist)
-                    .clipShape(.rect(cornerRadius: 15))
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
                     .shadow(radius: 2, x: 2, y: 2)
             }
             .padding(.top, 8)
@@ -82,8 +82,8 @@ struct RollInputView: View {
                     .fontWeight(.bold)
                     .foregroundColor(Color.black)
                     .frame(width: 300, height: 60, alignment: .center)
-                    .background(Color.background)
-                    .clipShape(.rect(cornerRadius: 15))
+                    .background(Color(uiColor: .secondarySystemBackground))
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
                     .shadow(radius: 2, x: 2, y: 2)
             }
             .padding(.bottom, 25)

@@ -7,20 +7,84 @@
 
 import SwiftUI
 
+struct GameFacts: View {
+    let game: Game
+
+    var body: some View {
+        ScrollView {
+
+            AttackRollsCard(game: game)
+
+            if game.new_game {
+                NoNumbersCards(game: game)
+            }
+
+            DiceChartsHScroll(game: game)
+
+            PlayersNumbersHScroll(game: game)
+
+            PlayersActionsHScroll(game: game)
+
+            RedDiceActionsHScroll(game: game)
+        }
+        .background(Color(uiColor: .secondarySystemBackground))
+    }
+}
+
+struct AttackRollsCard: View {
+    let game: Game
+    
+    var body: some View {
+        let attack_rolls = game.attack_rolls().count
+        
+        GroupBox {
+            Fact(
+                image: "a1",
+                main_text: "Los bárbaros llegaron \(attack_rolls) \(attack_rolls == 1 ? "vez" : "veces")",
+                sec_text: ""
+            )
+        }
+        .groupBoxStyle(.gameFact)
+        .padding(.horizontal, 25)
+        .padding(.top)
+    }
+}
+
+struct NoNumbersCards: View {
+    let game: Game
+    
+    var body: some View {
+        ForEach(5 ... 9, id: \.self) { num in
+            let streak = game.no_num_streak(num: num)
+            if streak >= 12 {
+                GroupBox {
+                    Fact(
+                        image: "n\(num)",
+                        main_text: "El \(num) no sale hace \(streak) turnos",
+                        sec_text: ""
+                    )
+                }
+                .groupBoxStyle(.gameFact)
+                .padding(.horizontal, 25)
+            }
+        }
+    }
+}
+
 struct Fact: View {
-    var image: String
-    var main_text: String
-    var sec_text: String
+    let image: String
+    let main_text: String
+    let sec_text: String
     
     var body: some View {
         HStack {
             Image(image)
                 .resizable()
                 .frame(width: 35, height: 35)
-                .padding(.trailing, 10)
+            
             VStack(alignment: .leading) {
                 Text(main_text)
-                    .fontWeight(.medium)
+                    .bold()
                 
                 if sec_text != "" {
                     Text(sec_text)
@@ -28,229 +92,199 @@ struct Fact: View {
                         .foregroundStyle(.gray)
                 }
             }
+            
+            Spacer()
         }
-        .padding(.vertical, 5)
+        .padding(.leading, 5)
     }
 }
 
-struct GameFacts: View {
+struct DiceChartsHScroll: View {
     let game: Game
-
+    
     var body: some View {
-        List {
-            if game.new_game {
-                Section {
-                    ForEach(5 ... 9, id: \.self) { num in
-                        let streak = game.no_num_streak(num: num)
-                        if streak >= 12 {
-                            Fact(image: "n\(num)", main_text: "El \(num) no sale hace \(streak) turnos", sec_text: "")
-                        }
-                    }
+        ScrollView(.horizontal) {
+            LazyHStack {
+                GroupBox {
+                    let values = game.num_values()
+                    NumChart(values: values)
+                        .frame(width: 310, height: 430)
                 }
-            }
-            
-            Section {
-                let attack_rolls = game.attack_rolls().count
-                Fact(image: "a1", main_text: "Los bárbaros llegaron \(attack_rolls) \(attack_rolls == 1 ? "vez" : "veces")", sec_text: "")
-            }
+                .groupBoxStyle(.gameFact)
+                
+                GroupBox {
+                    let red_values = game.red_values()
+                    ColorChart(color: "r", values: red_values)
+                        .frame(width: 310)
+                } label: {
+                    Text("Dado rojo")
+                }
+                .groupBoxStyle(.gameFact)
 
-            Section {
-                ScrollView(.horizontal) {
-                    HStack {
-                        let values = game.num_values()
-                        NumChart(values: values)
-                            .frame(width: 280, height: 400)
-                            .padding(.horizontal)
-
-                        ForEach(["r", "y"], id: \.self) { col in
-                            let values: [Int] = (col == "r" ? game.red_values() : game.yel_values())
-                            
-                            VStack {
-                                HStack {
-                                    Text("Dado \(col == "r" ? "rojo" : "amarillo")")
-                                        .font(.headline)
-                                        .fontWeight(.bold)
-                                }
-                                .padding(.top)
-                                
-                                ColorChart(color: col, values: values)
-                                    .frame(width: 280, height: 400)
-                                    .padding(.horizontal)
-                            }
-                        }
-                        
-                        let act_values = game.act_values()
-                        VStack {
-                            HStack {
-                                Text("Dado acontecimientos")
-                                    .font(.headline)
-                                    .fontWeight(.bold)
-                            }
-                            .padding(.top)
-                            
-                            ActChart(values: act_values)
-                                .frame(width: 280, height: 400)
-                                .padding(.horizontal)
-                        }
-                    }
-                    .scrollTargetLayout()
+                GroupBox {
+                    let yel_values = game.yel_values()
+                    ColorChart(color: "y", values: yel_values)
+                        .frame(width: 310)
+                } label: {
+                    Text("Dado amarillo")
                 }
-                .defaultScrollAnchor(.leading)
-                .scrollTargetBehavior(.viewAligned)
-                .contentMargins(.bottom, 20, for: .scrollContent)
-            }
-            
-            Section {
-                ScrollView(.horizontal) {
-                    HStack {
-                        ForEach(2...12, id: \.self) { num in
-                            let values: [(String, Int)] = game.players.map { ply in (ply, game.player_values(player: ply)[num-2]) }
-                            let colors: [Color] = game.colors.map { color in Color(color) }
-
-                            if values.reduce(0, { res, x in res + x.1 }) == 0 {
-                                VStack(alignment: .center) {
-                                    HStack {
-                                        Text("No salió el")
-                                            .font(.headline)
-                                            .fontWeight(.bold)
-                                        Image("n\(num)")
-                                            .resizable()
-                                            .frame(width: 35, height: 35)
-                                    }
-                                    Text("en toda la partida")
-                                        .font(.headline)
-                                        .fontWeight(.bold)
-                                }
-                                .frame(width: 280)
-                                .padding(.horizontal)
-                            } else {
-                                VStack{
-                                    HStack {
-                                        Text("Tiradas de")
-                                            .fontWeight(.bold)
-                                            .font(.headline)
-                                        Image("n\(num)")
-                                            .resizable()
-                                            .frame(width: 35, height: 35)
-                                        Text("por jugador")
-                                            .fontWeight(.bold)
-                                            .font(.headline)
-                                    }
-                                    .padding(.top)
-                                    
-                                    PlayerChart(values: values, colors: colors)
-                                        .frame(width: 280, height: 400)
-                                        .padding(.horizontal)
-                                }
-                            }
-                        }
-                    }
-                    .scrollTargetLayout()
+                .groupBoxStyle(.gameFact)
+                
+                GroupBox {
+                    let act_values = game.act_values()
+                    ActChart(values: act_values)
+                        .frame(width: 310)
+                } label: {
+                    Text("Dado acontecimientos")
                 }
-                .defaultScrollAnchor(.center)
-                .scrollTargetBehavior(.viewAligned)
-                .contentMargins(.bottom, 20, for: .scrollContent)
+                .groupBoxStyle(.gameFact)
             }
-            
-            Section {
-                ScrollView(.horizontal) {
-                    HStack {
-                        ForEach(1...4, id: \.self) { act in
-                            let values: [(String, Int)] = game.players.map { ply in (ply, game.player_act_values(player: ply)[act-1]) }
-                            let colors: [Color] = game.colors.map { color in Color(color) }
-                            
-                            if values.reduce(0, { res, x in res + x.1 }) == 0 {
-                                VStack(alignment: .center) {
-                                    HStack {
-                                        Text("No salió")
-                                            .font(.headline)
-                                            .fontWeight(.bold)
-                                        Image("a\(act)")
-                                            .resizable()
-                                            .frame(width: 35, height: 35)
-                                    }
-                                    Text("en toda la partida")
-                                        .font(.headline)
-                                        .fontWeight(.bold)
-                                }
-                                .frame(width: 280)
-                                .padding(.horizontal)
-                            } else {
-                                VStack {
-                                    HStack {
-                                        Text("Tiradas de")
-                                            .font(.headline)
-                                            .fontWeight(.bold)
-                                        Image("a\(act)")
-                                            .resizable()
-                                            .frame(width: 35, height: 35)
-                                        Text("por jugador")
-                                            .font(.headline)
-                                            .fontWeight(.bold)
-                                    }
-                                    .padding(.top)
-                                    
-                                    PlayerChart(values: values, colors: colors)
-                                        .frame(width: 280, height: 400)
-                                        .padding(.horizontal)
-                                }
-                            }
-                        }
-                    }
-                    .scrollTargetLayout()
-                }
-                .defaultScrollAnchor(.leading)
-                .scrollTargetBehavior(.viewAligned)
-                .contentMargins(.bottom, 20, for: .scrollContent)
-            }
-
-            Section {
-                ScrollView(.horizontal) {
-                    HStack {
-                        ForEach(2...4, id: \.self) { act in
-                            let values: [Int] = game.act_red_values(act: act)
-                            
-                            if values.reduce(0, +) == 0 {
-                                VStack(alignment: .center) {
-                                    HStack {
-                                        Text("No salió")
-                                            .font(.headline)
-                                            .fontWeight(.bold)
-                                        Image("a\(act)")
-                                            .resizable()
-                                            .frame(width: 35, height: 35)
-                                    }
-                                    Text("en toda la partida")
-                                        .font(.headline)
-                                        .fontWeight(.bold)
-                                }
-                                .frame(width: 280)
-                                .padding(.horizontal)
-                            } else {
-                                VStack {
-                                    HStack {
-                                        Text("Dado rojo en tiradas de")
-                                            .font(.headline)
-                                            .fontWeight(.bold)
-                                        Image("a\(act)")
-                                            .resizable()
-                                            .frame(width: 35, height: 35)
-                                    }
-                                    .padding(.top)
-                                    
-                                    ColorChart(color: "r", values: values)
-                                        .frame(width: 280, height: 400)
-                                        .padding(.horizontal)
-                                }
-                            }
-                        }
-                    }
-                    .scrollTargetLayout()
-                }
-                .defaultScrollAnchor(.leading)
-                .scrollTargetBehavior(.viewAligned)
-                .contentMargins(.bottom, 20, for: .scrollContent)
-            }
+            .scrollTargetLayout()
+            .padding(.horizontal, 25)
+            .padding(.top, 20)
         }
+        .defaultScrollAnchor(.leading)
+        .scrollTargetBehavior(.viewAligned)
+        .contentMargins(.bottom, 20, for: .scrollContent)
+    }
+}
+
+struct PlayersNumbersHScroll: View {
+    let game: Game
+    
+    var body: some View {
+        ScrollView(.horizontal) {
+            LazyHStack {
+                ForEach(2...12, id: \.self) { num in
+                    let values: [(String, Int)] = game.players.map { ply in (ply, game.player_values(player: ply)[num-2]) }
+                    let colors: [Color] = game.colors.map { color in Color(color) }
+                    
+                    if values.reduce(0, { res, x in res + x.1 }) == 0 {
+                        GroupBox {
+                            MissingDiceCard(dice: "n\(num)")
+                                .frame(width: 310, height: 445)
+                        }
+                        .groupBoxStyle(.gameFact)
+                    } else {
+                        GroupBox {
+                            PlayerChart(values: values, colors: colors)
+                                .frame(width: 310)
+                        } label: {
+                            HStack {
+                                Text("Tiradas de")
+                                Image("n\(num)")
+                                    .resizable()
+                                    .frame(width: 35, height: 35)
+                                Text("por jugador")
+                            }
+                        }
+                        .groupBoxStyle(.gameFact)
+                    }
+                }
+            }
+            .scrollTargetLayout()
+            .padding(.horizontal, 25)
+        }
+        .defaultScrollAnchor(.center)
+        .scrollTargetBehavior(.viewAligned)
+        .contentMargins(.bottom, 20, for: .scrollContent)
+    }
+}
+
+struct PlayersActionsHScroll: View {
+    let game: Game
+    
+    var body: some View {
+        ScrollView(.horizontal) {
+            LazyHStack {
+                ForEach(1...4, id: \.self) { act in
+                    let values: [(String, Int)] = game.players.map { ply in (ply, game.player_act_values(player: ply)[act-1]) }
+                    let colors: [Color] = game.colors.map { color in Color(color) }
+                    
+                    if values.reduce(0, { res, x in res + x.1 }) == 0 {
+                        GroupBox {
+                            MissingDiceCard(dice: "a\(act)")
+                                .frame(width: 310, height: 445)
+                        }
+                        .groupBoxStyle(.gameFact)
+                    } else {
+                        GroupBox {
+                            PlayerChart(values: values, colors: colors)
+                                .frame(width: 310)
+                        } label: {
+                            HStack {
+                                Text("Tiradas de")
+                                Image("a\(act)")
+                                    .resizable()
+                                    .frame(width: 35, height: 35)
+                                Text("por jugador")
+                            }
+                        }
+                        .groupBoxStyle(.gameFact)
+                    }
+                }
+            }
+            .scrollTargetLayout()
+            .padding(.horizontal, 25)
+        }
+        .defaultScrollAnchor(.leading)
+        .scrollTargetBehavior(.viewAligned)
+        .contentMargins(.bottom, 20, for: .scrollContent)
+    }
+}
+
+struct RedDiceActionsHScroll: View {
+    let game: Game
+    
+    var body: some View {
+        ScrollView(.horizontal) {
+            LazyHStack {
+                ForEach(2...4, id: \.self) { act in
+                    let values: [Int] = game.act_red_values(act: act)
+                    
+                    if values.reduce(0, +) == 0 {
+                        GroupBox {
+                            MissingDiceCard(dice: "a\(act)")
+                                .frame(width: 310, height: 445)
+                        }
+                    } else {
+                        GroupBox {
+                            ColorChart(color: "r", values: values)
+                                .frame(width: 310)
+                        } label: {
+                            HStack {
+                                Text("Dado rojo en tiradas de")
+                                Image("a\(act)")
+                                    .resizable()
+                                    .frame(width: 35, height: 35)
+                            }
+                        }
+                        .groupBoxStyle(.gameFact)
+                    }
+                }
+            }
+            .scrollTargetLayout()
+            .padding(.horizontal, 25)
+        }
+        .defaultScrollAnchor(.leading)
+        .scrollTargetBehavior(.viewAligned)
+        .contentMargins(.bottom, 20, for: .scrollContent)
+    }
+}
+
+struct MissingDiceCard: View {
+    let dice: String
+    
+    var body: some View {
+        VStack(alignment: .center) {
+            HStack {
+                Text("No salió el")
+                Image(dice)
+                    .resizable()
+                    .frame(width: 35, height: 35)
+            }
+            Text("en toda la partida")
+        }
+        .bold()
     }
 }
