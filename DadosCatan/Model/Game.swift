@@ -153,4 +153,29 @@ class Game {
         }
         return values
     }
+    
+    func max_attack_players() -> [String: Int] {
+        var ply_attacks: [String: Int] = [:]
+        for ply in self.players {
+            ply_attacks[ply] = 0
+        }
+        let attack_rolls = self.attack_rolls()
+        for idx in attack_rolls {
+            ply_attacks[self.players[idx%self.players.count]]! += 1
+        }
+        
+        var max_players: [String: Int] = [:]
+        var max = 0
+        for player_attack_rolls in ply_attacks {
+            if player_attack_rolls.value > max {
+                max_players = [:]
+                max_players[player_attack_rolls.key] = player_attack_rolls.value
+                max = player_attack_rolls.value
+            } else if player_attack_rolls.value == max {
+                max_players[player_attack_rolls.key] = player_attack_rolls.value
+            }
+        }
+        
+        return max_players
+    }
 }

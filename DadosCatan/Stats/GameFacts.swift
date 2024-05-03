@@ -12,8 +12,9 @@ struct GameFacts: View {
 
     var body: some View {
         ScrollView {
-
             AttackRollsCard(game: game)
+            
+//            MostAttacksCard(game: game)
 
             if game.new_game {
                 NoNumbersCards(game: game)
@@ -50,6 +51,36 @@ struct AttackRollsCard: View {
     }
 }
 
+//struct MostAttacksCard: View {
+//    let game: Game
+//    
+//    var body: some View {
+//        let max_attacks = game.max_attack_players()
+//        
+//        GroupBox {
+//            if max_attacks.count == 1 {
+//                Fact(
+//                    image: "a1",
+//                    main_text: "\(max_attacks.first!.key) es el jugador que más hizo llegar a los bárbaros",
+//                    sec_text: "Los hizo llegar \(max_attacks.first!.value) \(max_attacks.first!.value == 1 ? "vez" : "veces")"
+//                )
+//            } else {
+//                var players = ""
+//                for ply_att in max_attacks {
+//                    players += "\(ply_att.key), "
+//                }
+//                Fact(
+//                    image: "a1",
+//                    main_text: "\(players) son los jugadores que más hicieron llegar a los bárbaros",
+//                    sec_text: "Los hicieron llegar \(max_attacks.first!.value) \(max_attacks.first!.value == 1 ? "vez" : "veces")"
+//                )
+//            }
+//        }
+//        .groupBoxStyle(.gameFact)
+//        .padding(.horizontal, 25)
+//    }
+//}
+
 struct NoNumbersCards: View {
     let game: Game
     
@@ -81,6 +112,7 @@ struct Fact: View {
             Image(image)
                 .resizable()
                 .frame(width: 35, height: 35)
+                .padding(.trailing, 5)
             
             VStack(alignment: .leading) {
                 Text(main_text)
