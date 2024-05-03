@@ -247,6 +247,7 @@ struct RedDiceActionsHScroll: View {
                             MissingDiceCard(dice: "a\(act)")
                                 .frame(width: 310, height: 445)
                         }
+                        .groupBoxStyle(.gameFact)
                     } else {
                         GroupBox {
                             ColorChart(color: "r", values: values)

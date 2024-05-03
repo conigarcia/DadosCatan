@@ -21,7 +21,6 @@ struct GameDetailView: View {
                         Image(systemName: "tablecells")
                         Text("Tabla")
                     }
-                    .font(.headline)
                 }
 
                 NavigationLink {
@@ -37,7 +36,6 @@ struct GameDetailView: View {
                         Image(systemName: "chart.bar.xaxis")
                         Text("Gráficos y Datos")
                     }
-                    .font(.headline)
                 }
             }
 
