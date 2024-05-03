@@ -100,6 +100,15 @@ struct RollInputView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
+                    stats = true
+                } label: {
+                    Image(systemName: "chart.bar.xaxis")
+                }
+                .disabled(game.rolls.isEmpty)
+            }
+
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
                     let deleted_roll = game.rolls.removeLast()
                     if deleted_roll.act_value == 1 {
                         if boat_rolls > 0 {
@@ -109,19 +118,9 @@ struct RollInputView: View {
                         }
                     }
                 } label: {
-                    Text("Deshacer")
+                    Image(systemName: "arrow.uturn.backward.circle.fill")
                 }
                 .disabled(game.rolls.isEmpty)
-            }
-            
-            ToolbarItem(placement: .topBarLeading) {
-                Button {
-                    stats = true
-                } label: {
-                    Text("Estadísticas")
-                        .fontWeight(.bold)
-                }
-                .disabled(game.rolls.isEmpty)                
             }
         }
         .navigationDestination(isPresented: $stats) {

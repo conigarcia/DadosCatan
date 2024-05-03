@@ -21,7 +21,6 @@ struct GamesListView: View {
                     NavigationLink {
                         if game.new_game {
                             RollInputView(game: game)
-                                .navigationBarBackButtonHidden()
                         } else {
                             GameDetailView(game: game)
                                 .navigationTitle("Estadísticas")
@@ -30,8 +29,14 @@ struct GamesListView: View {
                         HStack {
                             Text(game.name)
                             Spacer()
-                            Text(game.date.formatted(.dateTime.day().month().year()))
-                                .foregroundStyle(.gray)
+                            if game.new_game {
+                                Text("EN CURSO")
+                                    .font(.system(.body).smallCaps())
+                                    .foregroundColor(.green)
+                            } else {
+                                Text(game.date.formatted(.dateTime.day().month().year()))
+                                    .foregroundStyle(.gray)
+                            }
                         }
                     }
                 }
@@ -48,7 +53,7 @@ struct GamesListView: View {
                     Button {
                         add_new_game = true
                     } label: {
-                        Label("Nueva partida", systemImage: "plus")
+                        Image(systemName: "plus.circle.fill")
                     }
                 }
             }
