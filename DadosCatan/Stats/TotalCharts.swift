@@ -59,6 +59,15 @@ struct TotalCharts: View {
             .padding(.top, 20)
             
             GroupBox {
+                ActChart(values: act_values)
+            } label: {
+                Text("Dado acontecimientos")
+            }
+            .groupBoxStyle(.gameFact)
+            .padding(.horizontal, 25)
+            .padding(.top, 20)
+            
+            GroupBox {
                 ColorChart(color: "r", values: red_values)
             } label: {
                 Text("Dado rojo")
@@ -75,17 +84,9 @@ struct TotalCharts: View {
             .groupBoxStyle(.gameFact)
             .padding(.horizontal, 25)
             .padding(.top, 20)
-
-            GroupBox {
-                ActChart(values: act_values)
-            } label: {
-                Text("Dado acontecimientos")
-            }
-            .groupBoxStyle(.gameFact)
-            .padding(.horizontal, 25)
-            .padding(.top, 20)
         }
-        .background(Color(uiColor: .secondarySystemBackground))
+        .padding(.bottom)
+        .background(Color(.systemGroupedBackground))
     }
 }
 

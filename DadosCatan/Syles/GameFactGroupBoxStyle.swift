@@ -16,8 +16,8 @@ struct GameFactGroupBoxStyle: GroupBoxStyle {
             configuration.content
         }
         .padding()
-        .frame(maxWidth: .infinity)
-        .background(.white, in: RoundedRectangle(cornerRadius: 8))
+        .background(Color(.secondarySystemGroupedBackground))
+        .clipShape(.rect(cornerRadius: 8))
     }
 }
 

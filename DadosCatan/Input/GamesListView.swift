@@ -32,10 +32,10 @@ struct GamesListView: View {
                             if game.new_game {
                                 Text("EN CURSO")
                                     .font(.system(.body).smallCaps())
-                                    .foregroundColor(.green)
+                                    .foregroundColor(Color(.green))
                             } else {
                                 Text(game.date.formatted(.dateTime.day().month().year()))
-                                    .foregroundStyle(.gray)
+                                    .foregroundStyle(Color(.secondaryLabel))
                             }
                         }
                     }

@@ -15,14 +15,16 @@ struct NumChart: View {
         Chart {
             ForEach(2...12, id: \.self) { num in
                 BarMark(x: .value("valor", String(num)), y: .value("cantidad", values[num-2]))
-                    .foregroundStyle(Color.alchemist)
                     .annotation(position: .top) {
                         Text(String(values[num-2]))
-                            .font(.system(size: 9))
+                            .foregroundStyle(Color(.accent))
+                            .font(.caption2)
                             .fontWeight(.bold)
+                            .scaledToFit()
+                            .minimumScaleFactor(0.5)
                             .frame(width: 20, height: 20)
-                            .foregroundStyle(Color.alchemist)
-                            .background(Color(uiColor: .secondarySystemBackground), in: RoundedRectangle(cornerRadius: 5))
+                            .background(Color(.tertiarySystemGroupedBackground))
+                            .clipShape(.rect(cornerRadius: 5))
                     }
             }
         }
@@ -160,7 +162,6 @@ struct ActChart: View {
                         .frame(width: 40, height: 40)
                     Text("\(values[selectedSector!-1]) \(values[selectedSector!-1] == 1 ? "vez" : "veces")")
                         .font(.caption)
-                        .foregroundStyle(.gray)
                 }
             }
         }

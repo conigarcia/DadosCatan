@@ -11,7 +11,7 @@ struct ContentView: View {
     var body: some View {
         TabView {
             GamesListView()
-                .tabItem { Label("Partidas", systemImage: "list.bullet") }
+                .tabItem { Label("Partidas", systemImage: "dice.fill") }
 
             NavigationStack {
                 TotalCharts()
