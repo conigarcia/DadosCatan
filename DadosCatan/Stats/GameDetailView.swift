@@ -26,11 +26,11 @@ struct GameDetailView: View {
                 NavigationLink {
                     GameFacts(game: game)
                         .navigationTitle("Gráficos y Datos")
-                        .toolbar {
-                            ToolbarItem(placement: .topBarTrailing) {
-                                ShareLink(item: chartPDF(game: game, path: "gráficos \(game.date.formatted(.dateTime.day().month().year())).pdf"))
-                            }
-                        }
+//                        .toolbar {
+//                            ToolbarItem(placement: .topBarTrailing) {
+//                                ShareLink(item: chartPDF(game: game, path: "gráficos \(game.date.formatted(.dateTime.day().month().year())).pdf"))
+//                            }
+//                        }
                 } label: {
                     HStack {
                         Image(systemName: "chart.bar.xaxis")

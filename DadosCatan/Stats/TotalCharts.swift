@@ -90,24 +90,24 @@ struct TotalCharts: View {
     }
 }
 
-struct PDFTotalCharts: View {
-    @Query(sort: \Game.date, order: .reverse) private var games: [Game]
-    
-    var values: [Int] {get_num_values(games: games)}
-    var red_values: [Int] {get_red_values(games: games)}
-    var yel_values: [Int] {get_yel_values(games: games)}
-    var act_values: [Int] {get_act_values(games: games)}
-
-    var body: some View {
-        VStack {
-            NumChart(values: values)
-                .padding()
-            PDFColorChart(color: "r", values: red_values)
-                .padding()
-            PDFColorChart(color: "y", values: yel_values)
-                .padding()
-            PDFActChart(values: act_values)
-                .padding()
-        }
-    }
-}
+//struct PDFTotalCharts: View {
+//    @Query(sort: \Game.date, order: .reverse) private var games: [Game]
+//    
+//    var values: [Int] {get_num_values(games: games)}
+//    var red_values: [Int] {get_red_values(games: games)}
+//    var yel_values: [Int] {get_yel_values(games: games)}
+//    var act_values: [Int] {get_act_values(games: games)}
+//
+//    var body: some View {
+//        VStack {
+//            NumChart(values: values)
+//                .padding()
+//            PDFColorChart(color: "r", values: red_values)
+//                .padding()
+//            PDFColorChart(color: "y", values: yel_values)
+//                .padding()
+//            PDFActChart(values: act_values)
+//                .padding()
+//        }
+//    }
+//}

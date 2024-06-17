@@ -16,11 +16,11 @@ struct ContentView: View {
             NavigationStack {
                 TotalCharts()
                     .navigationTitle("Gráficos totales")
-                    .toolbar {
-                        ToolbarItem(placement: .topBarTrailing) {
-                            ShareLink(item: totalPDF(path: "gráficos totales.pdf"))
-                        }
-                    }
+//                    .toolbar {
+//                        ToolbarItem(placement: .topBarTrailing) {
+//                            ShareLink(item: totalPDF(path: "gráficos totales.pdf"))
+//                        }
+//                    }
             }
             .tabItem { Label("General", systemImage: "chart.pie.fill") }
         }
