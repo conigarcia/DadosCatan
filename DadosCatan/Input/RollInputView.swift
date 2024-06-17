@@ -24,53 +24,44 @@ struct RollInputView: View {
         VStack {
             DiceRollView(dice: $dice)
                 .padding()
-                .padding(.bottom, 25)
-                .padding(.top, 25)
+                .padding(.vertical, 25)
             
-            Button {
-                game.rolls.append(dice)
-                if dice.act_value == 1 {
-                    boat_rolls += 1
-                    if boat_rolls == 7 {
-                        attack = true
-                        boat_rolls = 0
+//            HStack {
+                Button {
+                    game.rolls.append(dice)
+                    if dice.act_value == 1 {
+                        boat_rolls += 1
+                        if boat_rolls == 7 {
+                            attack = true
+                            boat_rolls = 0
+                        }
                     }
+                    dice.reset()
+                } label: {
+                    Text("cargar")
+                        .frame(width: 250, height: 25)
                 }
-                dice.reset()
-            } label: {
-                Text("CARGAR")
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.black)
-                    .frame(width: 250, height: 50, alignment: .center)
-                    .background(Color(uiColor: .secondarySystemBackground))
-                    .clipShape(RoundedRectangle(cornerRadius: 15))
-                    .shadow(radius: 2, x: 2, y: 2)
-            }
-            .padding(.bottom, 8)
-            
-            Button {
-                dice.alchemist = true
-                game.rolls.append(dice)
-                if dice.act_value == 1 {
-                    boat_rolls += 1
-                    if boat_rolls == 7 {
-                        attack = true
-                        boat_rolls = 0
+                .buttonStyle(DCButtonStyle())
+                .padding(.bottom, 8)
+                
+                Button {
+                    dice.alchemist = true
+                    game.rolls.append(dice)
+                    if dice.act_value == 1 {
+                        boat_rolls += 1
+                        if boat_rolls == 7 {
+                            attack = true
+                            boat_rolls = 0
+                        }
                     }
+                    dice.reset()
+                } label: {
+                    Text("ALQUIMISTA")
+                        .frame(width: 250, height: 25)
                 }
-                dice.reset()
-            } label: {
-                Text("ALQUIMISTA")
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.white)
-                    .frame(width: 250, height: 50, alignment: .center)
-                    .background(Color.alchemist)
-                    .clipShape(RoundedRectangle(cornerRadius: 15))
-                    .shadow(radius: 2, x: 2, y: 2)
-            }
-            .padding(.top, 8)
+                .buttonStyle(DCButtonStyle())
+                .padding(.top, 8)
+//            }
             
             Spacer()
             
@@ -78,14 +69,9 @@ struct RollInputView: View {
                 alert = true
             } label: {
                 Text("TERMINAR PARTIDA")
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.black)
-                    .frame(width: 300, height: 60, alignment: .center)
-                    .background(Color(uiColor: .secondarySystemBackground))
-                    .clipShape(RoundedRectangle(cornerRadius: 15))
-                    .shadow(radius: 2, x: 2, y: 2)
+                    .frame(width: 300, height: 25, alignment: .center)
             }
+            .buttonStyle(DCButtonStyle())
             .padding(.bottom, 25)
             .disabled(game.rolls.isEmpty)
             .alert("Seguro querés terminar la partida?", isPresented: $alert) {

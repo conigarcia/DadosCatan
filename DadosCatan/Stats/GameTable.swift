@@ -17,7 +17,7 @@ struct GameTable: View {
                 let player = game.players[idx%(game.players.count)]
                 let is_attack_roll = attack_rolls.contains(idx)
                 GameTableRow(roll: roll, idx: idx, player: player, is_attack_roll: is_attack_roll)
-                    .listRowBackground(roll.alchemist ? Color.alchemist.opacity(0.2) : (is_attack_roll ? Color.redDice.opacity(0.2) : Color.white))
+                    .listRowBackground(roll.alchemist ? Color.alchemist.opacity(0.2) : (is_attack_roll ? Color.redDice.opacity(0.2) : Color(.secondarySystemGroupedBackground)))
             }
         }
     }
@@ -32,7 +32,7 @@ struct GameTableRow: View {
     var body: some View {
         HStack {
             Text(idx+1, format: .number)
-                .foregroundStyle(Color.gray)
+                .foregroundStyle(Color(.secondaryLabel))
                 .padding(.leading, 10)
             
             Text(player)

@@ -23,7 +23,6 @@ struct GameInputView: View {
             Section {
                 TextField(text: $name_input, prompt: Text("nombre de partida")) {}
                     .autocorrectionDisabled()
-                    .autocapitalization(.none)
             }
             
             Section("ingresar los jugadores en orden de juego") {
@@ -62,9 +61,9 @@ struct GameInputView: View {
                 dismiss()
             } label: {
                 Text("COMENZAR")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .foregroundColor(.black)
+                    .font(.title3.smallCaps())
+                    .fontWeight(.semibold)
+                    .foregroundColor(Color(.label))
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.vertical, 10)
             }
