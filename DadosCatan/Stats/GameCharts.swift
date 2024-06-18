@@ -260,7 +260,10 @@ struct PlayerChart: View {
 }
 
 #Preview("player") {
-    PlayerChart(values: [("coni", 3), ("cris", 2), ("toti", 1), ("fran", 3), ("moger", 2), ("juampe", 2)], colors: [.orangePlayer, .redPlayer, .brownPlayer, .whitePlayer, .bluePlayer, .greenPlayer])
+    PlayerChart(
+        values: [("coni", 3), ("cris", 2), ("toti", 1), ("fran", 3), ("moger", 2), ("juampe", 2)],
+        colors: [PlayerColor.orange.color, PlayerColor.red.color, PlayerColor.brown.color, PlayerColor.white.color, PlayerColor.blue.color, PlayerColor.green.color]
+    )
 }
 
 /* --- PDF CHARTS --- */

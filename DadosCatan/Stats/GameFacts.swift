@@ -190,7 +190,7 @@ struct PlayersNumbersHScroll: View {
             LazyHStack {
                 ForEach(2...12, id: \.self) { num in
                     let values: [(String, Int)] = game.players.map { ply in (ply, game.player_values(player: ply)[num-2]) }
-                    let colors: [Color] = game.colors.map { color in Color(color) }
+                    let colors: [Color] = game.colors.map { color in color.color }
                     
                     if values.reduce(0, { res, x in res + x.1 }) == 0 {
                         GroupBox {
@@ -232,7 +232,7 @@ struct PlayersActionsHScroll: View {
             LazyHStack {
                 ForEach(1...4, id: \.self) { act in
                     let values: [(String, Int)] = game.players.map { ply in (ply, game.player_act_values(player: ply)[act-1]) }
-                    let colors: [Color] = game.colors.map { color in Color(color) }
+                    let colors: [Color] = game.colors.map { color in color.color }
                     
                     if values.reduce(0, { res, x in res + x.1 }) == 0 {
                         GroupBox {

@@ -65,6 +65,12 @@ struct GamesListView: View {
                     GameInputView()
                 }
             }
+            
+//            Button("fix colors") {
+//                for game in games {
+//                    game.fix_colors()
+//                }
+//            }
         }
     }
 }
