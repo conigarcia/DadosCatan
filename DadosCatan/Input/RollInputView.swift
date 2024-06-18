@@ -22,11 +22,29 @@ struct RollInputView: View {
     
     var body: some View {
         VStack {
+            ZStack {
+                Rectangle()
+                    .frame(width: 300, height: 10)
+                    .foregroundStyle(.blue)
+                    .clipShape(.capsule)
+                
+                HStack {
+                    Spacer()
+                    ForEach(0...7, id: \.self) { pos in
+                        Circle()
+                            .frame(width: 20, height: 20)
+                            .foregroundStyle(pos == boat_rolls ? .red : Color(.label))
+                        Spacer()
+                        
+                    }
+                }
+                .frame(width: 300)
+            }
+            
             DiceRollView(dice: $dice)
-                .padding()
                 .padding(.vertical, 25)
             
-//            HStack {
+            HStack {
                 Button {
                     game.rolls.append(dice)
                     if dice.act_value == 1 {
@@ -39,10 +57,10 @@ struct RollInputView: View {
                     dice.reset()
                 } label: {
                     Text("cargar")
-                        .frame(width: 250, height: 25)
+                        .frame(width: 120, height: 25)
                 }
                 .buttonStyle(DCButtonStyle())
-                .padding(.bottom, 8)
+                .padding(.trailing, 20)
                 
                 Button {
                     dice.alchemist = true
@@ -57,13 +75,12 @@ struct RollInputView: View {
                     dice.reset()
                 } label: {
                     Text("ALQUIMISTA")
-                        .frame(width: 250, height: 25)
+                        .frame(width: 120, height: 25)
                 }
                 .buttonStyle(DCButtonStyle())
-                .padding(.top, 8)
-//            }
+            }
             
-            Spacer()
+//            Spacer()
             
             Button {
                 alert = true
@@ -72,7 +89,7 @@ struct RollInputView: View {
                     .frame(width: 300, height: 25, alignment: .center)
             }
             .buttonStyle(DCButtonStyle())
-            .padding(.bottom, 25)
+            .padding(.vertical, 25)
             .disabled(game.rolls.isEmpty)
             .alert("Seguro querés terminar la partida?", isPresented: $alert) {
                 Button("Si") {
