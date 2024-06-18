@@ -21,82 +21,87 @@ struct RollInputView: View {
     @State var boat_rolls = 0
     
     var body: some View {
-        VStack {
-            ZStack {
-                Rectangle()
-                    .frame(width: 300, height: 10)
-                    .foregroundStyle(.blue)
-                    .clipShape(.capsule)
+        ZStack {
+            Color(.appBackground)
+                .ignoresSafeArea()
+            
+            VStack {
+                ZStack {
+                    Rectangle()
+                        .frame(width: 300, height: 10)
+                        .foregroundStyle(.blue)
+                        .clipShape(.capsule)
+                    
+                    HStack {
+                        Spacer()
+                        ForEach(0...7, id: \.self) { pos in
+                            Circle()
+                                .frame(width: 20, height: 20)
+                                .foregroundStyle(pos == boat_rolls ? .red : Color(.label))
+                            Spacer()
+                            
+                        }
+                    }
+                    .frame(width: 300)
+                }
+                
+                DiceRollView(dice: $dice)
+                    .padding(.vertical, 25)
                 
                 HStack {
-                    Spacer()
-                    ForEach(0...7, id: \.self) { pos in
-                        Circle()
-                            .frame(width: 20, height: 20)
-                            .foregroundStyle(pos == boat_rolls ? .red : Color(.label))
-                        Spacer()
-                        
-                    }
-                }
-                .frame(width: 300)
-            }
-            
-            DiceRollView(dice: $dice)
-                .padding(.vertical, 25)
-            
-            HStack {
-                Button {
-                    game.rolls.append(dice)
-                    if dice.act_value == 1 {
-                        boat_rolls += 1
-                        if boat_rolls == 7 {
-                            attack = true
-                            boat_rolls = 0
+                    Button {
+                        game.rolls.append(dice)
+                        if dice.act_value == 1 {
+                            boat_rolls += 1
+                            if boat_rolls == 7 {
+                                attack = true
+                                boat_rolls = 0
+                            }
                         }
+                        dice.reset()
+                    } label: {
+                        Text("cargar")
+                            .frame(width: 120, height: 25)
                     }
-                    dice.reset()
-                } label: {
-                    Text("cargar")
-                        .frame(width: 120, height: 25)
+                    .buttonStyle(DCButtonStyle())
+                    .padding(.trailing, 20)
+                    
+                    Button {
+                        dice.alchemist = true
+                        game.rolls.append(dice)
+                        if dice.act_value == 1 {
+                            boat_rolls += 1
+                            if boat_rolls == 7 {
+                                attack = true
+                                boat_rolls = 0
+                            }
+                        }
+                        dice.reset()
+                    } label: {
+                        Text("ALQUIMISTA")
+                            .frame(width: 120, height: 25)
+                    }
+                    .buttonStyle(DCButtonStyle())
                 }
-                .buttonStyle(DCButtonStyle())
-                .padding(.trailing, 20)
+                
+                //            Spacer()
                 
                 Button {
-                    dice.alchemist = true
-                    game.rolls.append(dice)
-                    if dice.act_value == 1 {
-                        boat_rolls += 1
-                        if boat_rolls == 7 {
-                            attack = true
-                            boat_rolls = 0
-                        }
-                    }
-                    dice.reset()
+                    alert = true
                 } label: {
-                    Text("ALQUIMISTA")
-                        .frame(width: 120, height: 25)
+                    Text("TERMINAR PARTIDA")
+                        .frame(width: 300, height: 25, alignment: .center)
                 }
                 .buttonStyle(DCButtonStyle())
-            }
-            
-//            Spacer()
-            
-            Button {
-                alert = true
-            } label: {
-                Text("TERMINAR PARTIDA")
-                    .frame(width: 300, height: 25, alignment: .center)
-            }
-            .buttonStyle(DCButtonStyle())
-            .padding(.vertical, 25)
-            .disabled(game.rolls.isEmpty)
-            .alert("Seguro querés terminar la partida?", isPresented: $alert) {
-                Button("Si") {
-                    game.new_game = false
-                    dismiss()
+                .padding(.vertical, 25)
+                .disabled(game.rolls.isEmpty)
+                .alert("Seguro querés terminar la partida?", isPresented: $alert) {
+                    Button("Si") {
+                        game.new_game = false
+                        dismiss()
+                    }
+                    Button("No") {}
                 }
-                Button("No") {}
             }
         }
         .navigationTitle("Turno de \(game.players[(game.rolls.count)%game.players.count])")

@@ -30,6 +30,7 @@
 		CFC8C9BF2BA76AF5004E7F67 /* DiceRollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC8C9BE2BA76AF5004E7F67 /* DiceRollView.swift */; };
 		CFC8C9C12BA76B1D004E7F67 /* DiceSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC8C9C02BA76B1D004E7F67 /* DiceSelectionView.swift */; };
 		CFE011872C20F48B00FD4846 /* DCButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE011862C20F48B00FD4846 /* DCButtonStyle.swift */; };
+		CFE011892C22222400FD4846 /* DCTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE011882C22222400FD4846 /* DCTextFieldStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		CFC8C9BE2BA76AF5004E7F67 /* DiceRollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRollView.swift; sourceTree = "<group>"; };
 		CFC8C9C02BA76B1D004E7F67 /* DiceSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceSelectionView.swift; sourceTree = "<group>"; };
 		CFE011862C20F48B00FD4846 /* DCButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DCButtonStyle.swift; sourceTree = "<group>"; };
+		CFE011882C22222400FD4846 /* DCTextFieldStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DCTextFieldStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 		CF4034D22BE44A670031C31B /* Syles */ = {
 			isa = PBXGroup;
 			children = (
+				CFE011882C22222400FD4846 /* DCTextFieldStyle.swift */,
 				CFE011862C20F48B00FD4846 /* DCButtonStyle.swift */,
 				CF4034D02BE44A560031C31B /* GameFactGroupBoxStyle.swift */,
 			);
@@ -343,6 +346,7 @@
 				CF8070AE2BA7B9AE00A37BE0 /* GameFacts.swift in Sources */,
 				CF8070AA2BA79B7600A37BE0 /* GameTable.swift in Sources */,
 				CF8070B62BA8AD1D00A37BE0 /* TotalCharts.swift in Sources */,
+				CFE011892C22222400FD4846 /* DCTextFieldStyle.swift in Sources */,
 				CF8070B22BA8965600A37BE0 /* PDFGeneration.swift in Sources */,
 				CF7FC5742BA3B31200E12FA0 /* DiceRoll.swift in Sources */,
 				CFE011872C20F48B00FD4846 /* DCButtonStyle.swift in Sources */,

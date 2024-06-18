@@ -32,13 +32,14 @@ struct GamesListView: View {
                             if game.new_game {
                                 Text("EN CURSO")
                                     .font(.system(.body).smallCaps())
-                                    .foregroundColor(Color(.green))
+                                    .foregroundColor(Color(.accent))
                             } else {
                                 Text(game.date.formatted(.dateTime.day().month().year()))
                                     .foregroundStyle(Color(.secondaryLabel))
                             }
                         }
                     }
+                    .listRowBackground(Color(.appSecondaryBackground))
                 }
                 .onDelete { indexSet in
                     indexSet.forEach { index in
@@ -47,6 +48,8 @@ struct GamesListView: View {
                     }
                 }
             }
+            .scrollContentBackground(.hidden)
+            .background(.appBackground)
             .navigationTitle("Partidas")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {

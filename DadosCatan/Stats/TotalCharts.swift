@@ -86,7 +86,7 @@ struct TotalCharts: View {
             .padding(.top, 20)
         }
         .padding(.bottom)
-        .background(Color(.systemGroupedBackground))
+        .background(Color(.appBackground))
     }
 }
 

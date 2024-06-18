@@ -16,7 +16,7 @@ struct GameFactGroupBoxStyle: GroupBoxStyle {
             configuration.content
         }
         .padding()
-        .background(Color(.secondarySystemGroupedBackground))
+        .background(Color(.appSecondaryBackground))
         .clipShape(.rect(cornerRadius: 8))
     }
 }
