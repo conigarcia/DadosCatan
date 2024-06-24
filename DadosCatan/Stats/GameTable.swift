@@ -17,9 +17,11 @@ struct GameTable: View {
                 let player = game.players[idx%(game.players.count)]
                 let is_attack_roll = attack_rolls.contains(idx)
                 GameTableRow(roll: roll, idx: idx, player: player, is_attack_roll: is_attack_roll)
-                    .listRowBackground(roll.alchemist ? Color.alchemist.opacity(0.2) : (is_attack_roll ? Color.redDice.opacity(0.2) : Color(.secondarySystemGroupedBackground)))
+                    .listRowBackground(roll.alchemist ? Color.alchemist.opacity(0.2) : (is_attack_roll ? Color.redDice.opacity(0.2) : Color(.appSecondaryBackground)))
             }
         }
+        .scrollContentBackground(.hidden)
+        .background(.appBackground)
     }
 }
 

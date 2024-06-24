@@ -22,6 +22,7 @@ struct GameDetailView: View {
                         Text("Tabla")
                     }
                 }
+                .listRowBackground(Color(.appSecondaryBackground))
 
                 NavigationLink {
                     GameFacts(game: game)
@@ -37,6 +38,7 @@ struct GameDetailView: View {
                         Text("Gráficos y Datos")
                     }
                 }
+                .listRowBackground(Color(.appSecondaryBackground))
             }
 
             if game.rolls.count >= game.players.count {
@@ -51,9 +53,12 @@ struct GameDetailView: View {
                                 Text(player)
                             }
                         }
+                        .listRowBackground(Color(.appSecondaryBackground))
                     }
                 }
             }
         }
+        .scrollContentBackground(.hidden)
+        .background(.appBackground)
     }
 }
