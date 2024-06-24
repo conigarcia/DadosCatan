@@ -28,8 +28,8 @@ struct GameFacts: View {
 
             RedDiceActionsHScroll(game: game)
         }
-        .background(Color(.systemGroupedBackground))
         .padding(.bottom)
+        .background(Color(.appBackground))
     }
 }
 

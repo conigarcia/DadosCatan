@@ -22,8 +22,8 @@ struct PlayerFacts: View {
             
             PlayerActionsChart(game: game, player: player)
         }
-        .background(Color(.systemGroupedBackground))
         .padding(.bottom)
+        .background(Color(.appBackground))
     }
 }
 

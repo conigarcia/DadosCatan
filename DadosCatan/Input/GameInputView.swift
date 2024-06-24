@@ -17,7 +17,7 @@ struct GameInputView: View {
     @State var colors_input: [PlayerColor] = [.orange, .red, .green, .white, .blue, .brown]
     
     var body: some View {
-        VStack {
+        ScrollView {
             TextField(text: $name, prompt: Text("Nombre de la partida")) {}
                 .autocorrectionDisabled()
                 .textFieldStyle(DCTextFieldStyle())
