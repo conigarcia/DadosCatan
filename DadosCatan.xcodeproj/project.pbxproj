@@ -33,6 +33,7 @@
 		CFE011892C22222400FD4846 /* DCTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE011882C22222400FD4846 /* DCTextFieldStyle.swift */; };
 		CFE0118B2C22240C00FD4846 /* PlayerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE0118A2C22240C00FD4846 /* PlayerColor.swift */; };
 		CFE0118D2C2224FB00FD4846 /* DCColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE0118C2C2224FB00FD4846 /* DCColorPicker.swift */; };
+		CFE0118F2C29ED0F00FD4846 /* AttackCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE0118E2C29ED0F00FD4846 /* AttackCountView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		CFE011882C22222400FD4846 /* DCTextFieldStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DCTextFieldStyle.swift; sourceTree = "<group>"; };
 		CFE0118A2C22240C00FD4846 /* PlayerColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerColor.swift; sourceTree = "<group>"; };
 		CFE0118C2C2224FB00FD4846 /* DCColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DCColorPicker.swift; sourceTree = "<group>"; };
+		CFE0118E2C29ED0F00FD4846 /* AttackCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttackCountView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 				CF7FC54B2BA3B2EE00E12FA0 /* GamesListView.swift */,
 				CF7FC5772BA3B65800E12FA0 /* GameInputView.swift */,
 				CF7FC5792BA3BB2600E12FA0 /* RollInputView.swift */,
+				CFE0118E2C29ED0F00FD4846 /* AttackCountView.swift */,
 				CFC8C9BE2BA76AF5004E7F67 /* DiceRollView.swift */,
 				CFC8C9C02BA76B1D004E7F67 /* DiceSelectionView.swift */,
 			);
@@ -356,6 +359,7 @@
 				CF8070B22BA8965600A37BE0 /* PDFGeneration.swift in Sources */,
 				CF7FC5742BA3B31200E12FA0 /* DiceRoll.swift in Sources */,
 				CFE011872C20F48B00FD4846 /* DCButtonStyle.swift in Sources */,
+				CFE0118F2C29ED0F00FD4846 /* AttackCountView.swift in Sources */,
 				CF8070AC2BA7A15000A37BE0 /* PlayerFacts.swift in Sources */,
 				CFC8C9BF2BA76AF5004E7F67 /* DiceRollView.swift in Sources */,
 				CF7FC5782BA3B65800E12FA0 /* GameInputView.swift in Sources */,

@@ -26,24 +26,7 @@ struct RollInputView: View {
                 .ignoresSafeArea()
             
             VStack {
-                ZStack {
-                    Rectangle()
-                        .frame(width: 300, height: 10)
-                        .foregroundStyle(.blue)
-                        .clipShape(.capsule)
-                    
-                    HStack {
-                        Spacer()
-                        ForEach(0...7, id: \.self) { pos in
-                            Circle()
-                                .frame(width: 20, height: 20)
-                                .foregroundStyle(pos == boat_rolls ? .red : Color(.label))
-                            Spacer()
-                            
-                        }
-                    }
-                    .frame(width: 300)
-                }
+                AttackCountView(boat_rolls: $boat_rolls)
                 
                 DiceRollView(dice: $dice)
                     .padding(.vertical, 25)
@@ -83,8 +66,6 @@ struct RollInputView: View {
                     }
                     .buttonStyle(DCButtonStyle())
                 }
-                
-                //            Spacer()
                 
                 Button {
                     alert = true
