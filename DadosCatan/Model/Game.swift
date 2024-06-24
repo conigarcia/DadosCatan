@@ -13,7 +13,7 @@ class Game {
     var name: String
     var date = Date()
     var players: [String]
-    var colors: [PlayerColor] = []
+    var colors: [PlayerColor]?
     var rolls: [DiceRoll]
     
     var new_game = true
