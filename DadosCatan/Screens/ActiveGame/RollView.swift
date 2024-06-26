@@ -1,5 +1,5 @@
 //
-//  DiceRollView.swift
+//  RollView.swift
 //  DadosCatan
 //
 //  Created by coni garcia on 17/03/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DiceRollView: View {
+struct RollView: View {
     @Binding var dice: DiceRoll
     
     var body: some View {
@@ -55,6 +55,6 @@ struct DiceRollView: View {
 #Preview {
     @State var dice = DiceRoll(red_value: 1, yel_value: 1, act_value: 1)
     return NavigationStack {
-        DiceRollView(dice: $dice)
+        RollView(dice: $dice)
     }
 }

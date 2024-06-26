@@ -12,7 +12,7 @@ import SwiftData
 struct DadosCatanApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView()
         }
         .modelContainer(for: Game.self)
     }

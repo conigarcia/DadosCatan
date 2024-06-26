@@ -1,5 +1,5 @@
 //
-//  GameInputView.swift
+//  NewGameView.swift
 //  DadosCatan
 //
 //  Created by coni garcia on 14/03/2024.
@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct GameInputView: View {
+struct NewGameView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
     

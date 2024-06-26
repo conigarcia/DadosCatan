@@ -1,5 +1,5 @@
 //
-//  GamesListView.swift
+//  GameListView.swift
 //  DadosCatan
 //
 //  Created by coni garcia on 14/03/2024.
@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct GamesListView: View {
+struct GameListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Game.date, order: .reverse) private var games: [Game]
     
@@ -20,7 +20,7 @@ struct GamesListView: View {
                 ForEach(games) { game in
                     NavigationLink {
                         if game.new_game {
-                            RollInputView(game: game)
+                            ActiveGameView(game: game)
                         } else {
                             GameDetailView(game: game)
                                 .navigationTitle("Estadísticas")
@@ -62,7 +62,7 @@ struct GamesListView: View {
             }
             .sheet(isPresented: $add_new_game) {
                 NavigationStack {
-                    GameInputView()
+                    NewGameView()
                 }
             }
         }
@@ -70,6 +70,6 @@ struct GamesListView: View {
 }
 
 #Preview {
-    GamesListView()
+    GameListView()
         .modelContainer(for: Game.self, inMemory: true)
 }

@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MainTabView.swift
 //  DadosCatan
 //
 //  Created by coni garcia on 18/03/2024.
@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainTabView: View {
     var body: some View {
         TabView {
-            GamesListView()
+            GameListView()
                 .tabItem { Label("Partidas", systemImage: "dice.fill") }
 
             NavigationStack {

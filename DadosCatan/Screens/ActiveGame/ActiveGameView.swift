@@ -1,5 +1,5 @@
 //
-//  RollInputView.swift
+//  ActiveGameView.swift
 //  DadosCatan
 //
 //  Created by coni garcia on 14/03/2024.
@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct RollInputView: View {
+struct ActiveGameView: View {
     @Environment(\.dismiss) private var dismiss
     
     @State var alert = false
@@ -26,9 +26,9 @@ struct RollInputView: View {
                 .ignoresSafeArea()
             
             VStack {
-                AttackCountView(boat_rolls: $boat_rolls)
+                AttackCounterView(boat_rolls: $boat_rolls)
                 
-                DiceRollView(dice: $dice)
+                RollView(dice: $dice)
                     .padding(.vertical, 25)
                 
                 HStack {

@@ -1,5 +1,5 @@
 //
-//  AttackCountView.swift
+//  AttackCounterView.swift
 //  DadosCatan
 //
 //  Created by coni garcia on 24/06/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AttackCountView: View {
+struct AttackCounterView: View {
     @Binding var boat_rolls: Int
 
     var body: some View {
@@ -33,5 +33,5 @@ struct AttackCountView: View {
 }
 
 #Preview {
-    AttackCountView(boat_rolls: .constant(1))
+    AttackCounterView(boat_rolls: .constant(1))
 }
