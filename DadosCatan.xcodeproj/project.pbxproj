@@ -116,7 +116,6 @@
 			children = (
 				CFE011882C22222400FD4846 /* DCTextFieldStyle.swift */,
 				CFE011862C20F48B00FD4846 /* DCButtonStyle.swift */,
-				CFE0118C2C2224FB00FD4846 /* DCColorPicker.swift */,
 				CF4034D02BE44A560031C31B /* GameFactGroupBoxStyle.swift */,
 			);
 			path = Syles;
@@ -146,10 +145,11 @@
 			isa = PBXGroup;
 			children = (
 				CF7FC5492BA3B2EE00E12FA0 /* DadosCatanApp.swift */,
+				CF8070B12BA8965600A37BE0 /* PDFGeneration.swift */,
 				CFC8C9C22BA77D47004E7F67 /* Model */,
-				CFC8C9C32BA77D77004E7F67 /* Input */,
-				CF8070A42BA77F1D00A37BE0 /* Stats */,
+				CFAE8EEE2C2C630200668031 /* Screens */,
 				CF4034D22BE44A670031C31B /* Syles */,
+				CFAE8EF72C2C651B00668031 /* Utilities */,
 				CF7FC54D2BA3B2EF00E12FA0 /* Assets.xcassets */,
 				CF7FC54F2BA3B2EF00E12FA0 /* Preview Content */,
 			);
@@ -181,18 +181,104 @@
 			path = DadosCatanUITests;
 			sourceTree = "<group>";
 		};
-		CF8070A42BA77F1D00A37BE0 /* Stats */ = {
+		CFAE8EEE2C2C630200668031 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				CFAE8EF02C2C632E00668031 /* MainTab */,
+				CFAE8EEF2C2C631500668031 /* GameList */,
+				CFAE8EF62C2C64B300668031 /* RollInput */,
+				CFAE8EF12C2C638C00668031 /* GameDetail */,
+				CFAE8EF52C2C645500668031 /* TotalCharts */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		CFAE8EEF2C2C631500668031 /* GameList */ = {
+			isa = PBXGroup;
+			children = (
+				CF7FC54B2BA3B2EE00E12FA0 /* GamesListView.swift */,
+				CF7FC5772BA3B65800E12FA0 /* GameInputView.swift */,
+			);
+			path = GameList;
+			sourceTree = "<group>";
+		};
+		CFAE8EF02C2C632E00668031 /* MainTab */ = {
+			isa = PBXGroup;
+			children = (
+				CF8070B32BA8AAD000A37BE0 /* ContentView.swift */,
+			);
+			path = MainTab;
+			sourceTree = "<group>";
+		};
+		CFAE8EF12C2C638C00668031 /* GameDetail */ = {
 			isa = PBXGroup;
 			children = (
 				CF8070A52BA77F4D00A37BE0 /* GameDetailView.swift */,
-				CF8070A92BA79B7600A37BE0 /* GameTable.swift */,
-				CF8070A72BA78B0D00A37BE0 /* GameCharts.swift */,
-				CF8070AD2BA7B9AE00A37BE0 /* GameFacts.swift */,
-				CF8070AB2BA7A15000A37BE0 /* PlayerFacts.swift */,
-				CF8070B52BA8AD1D00A37BE0 /* TotalCharts.swift */,
-				CF8070B12BA8965600A37BE0 /* PDFGeneration.swift */,
+				CFAE8EF22C2C640600668031 /* GameTable */,
+				CFAE8EF32C2C640F00668031 /* GameFacts */,
+				CFAE8EF42C2C642B00668031 /* PlayerFacts */,
 			);
-			path = Stats;
+			path = GameDetail;
+			sourceTree = "<group>";
+		};
+		CFAE8EF22C2C640600668031 /* GameTable */ = {
+			isa = PBXGroup;
+			children = (
+				CF8070A92BA79B7600A37BE0 /* GameTable.swift */,
+			);
+			path = GameTable;
+			sourceTree = "<group>";
+		};
+		CFAE8EF32C2C640F00668031 /* GameFacts */ = {
+			isa = PBXGroup;
+			children = (
+				CF8070AD2BA7B9AE00A37BE0 /* GameFacts.swift */,
+				CF8070A72BA78B0D00A37BE0 /* GameCharts.swift */,
+			);
+			path = GameFacts;
+			sourceTree = "<group>";
+		};
+		CFAE8EF42C2C642B00668031 /* PlayerFacts */ = {
+			isa = PBXGroup;
+			children = (
+				CF8070AB2BA7A15000A37BE0 /* PlayerFacts.swift */,
+			);
+			path = PlayerFacts;
+			sourceTree = "<group>";
+		};
+		CFAE8EF52C2C645500668031 /* TotalCharts */ = {
+			isa = PBXGroup;
+			children = (
+				CF8070B52BA8AD1D00A37BE0 /* TotalCharts.swift */,
+			);
+			path = TotalCharts;
+			sourceTree = "<group>";
+		};
+		CFAE8EF62C2C64B300668031 /* RollInput */ = {
+			isa = PBXGroup;
+			children = (
+				CFC8C9BE2BA76AF5004E7F67 /* DiceRollView.swift */,
+				CFC8C9C02BA76B1D004E7F67 /* DiceSelectionView.swift */,
+				CF7FC5792BA3BB2600E12FA0 /* RollInputView.swift */,
+				CFE0118E2C29ED0F00FD4846 /* AttackCountView.swift */,
+			);
+			path = RollInput;
+			sourceTree = "<group>";
+		};
+		CFAE8EF72C2C651B00668031 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CFAE8EF82C2C652B00668031 /* ColorPicker */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		CFAE8EF82C2C652B00668031 /* ColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				CFE0118C2C2224FB00FD4846 /* DCColorPicker.swift */,
+			);
+			path = ColorPicker;
 			sourceTree = "<group>";
 		};
 		CFC8C9C22BA77D47004E7F67 /* Model */ = {
@@ -203,20 +289,6 @@
 				CFE0118A2C22240C00FD4846 /* PlayerColor.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		CFC8C9C32BA77D77004E7F67 /* Input */ = {
-			isa = PBXGroup;
-			children = (
-				CF8070B32BA8AAD000A37BE0 /* ContentView.swift */,
-				CF7FC54B2BA3B2EE00E12FA0 /* GamesListView.swift */,
-				CF7FC5772BA3B65800E12FA0 /* GameInputView.swift */,
-				CF7FC5792BA3BB2600E12FA0 /* RollInputView.swift */,
-				CFE0118E2C29ED0F00FD4846 /* AttackCountView.swift */,
-				CFC8C9BE2BA76AF5004E7F67 /* DiceRollView.swift */,
-				CFC8C9C02BA76B1D004E7F67 /* DiceSelectionView.swift */,
-			);
-			path = Input;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
