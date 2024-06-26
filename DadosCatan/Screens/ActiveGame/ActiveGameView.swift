@@ -26,12 +26,25 @@ struct ActiveGameView: View {
                 .ignoresSafeArea()
             
             VStack {
-                AttackCounterView(boat_rolls: $boat_rolls)
-                
-                RollView(dice: $dice)
-                    .padding(.vertical, 25)
-                
                 HStack {
+                    Button {
+                        dice.alchemist = true
+                        game.rolls.append(dice)
+                        if dice.act_value == 1 {
+                            boat_rolls += 1
+                            if boat_rolls == 7 {
+                                attack = true
+                                boat_rolls = 0
+                            }
+                        }
+                        dice.reset()
+                    } label: {
+                        Text("alquimista")
+                            .frame(width: 120, height: 25)
+                    }
+                    .buttonStyle(DCButtonStyle())
+                    .padding(.trailing, 20)
+
                     Button {
                         game.rolls.append(dice)
                         if dice.act_value == 1 {
@@ -47,42 +60,15 @@ struct ActiveGameView: View {
                             .frame(width: 120, height: 25)
                     }
                     .buttonStyle(DCButtonStyle())
-                    .padding(.trailing, 20)
-                    
-                    Button {
-                        dice.alchemist = true
-                        game.rolls.append(dice)
-                        if dice.act_value == 1 {
-                            boat_rolls += 1
-                            if boat_rolls == 7 {
-                                attack = true
-                                boat_rolls = 0
-                            }
-                        }
-                        dice.reset()
-                    } label: {
-                        Text("ALQUIMISTA")
-                            .frame(width: 120, height: 25)
-                    }
-                    .buttonStyle(DCButtonStyle())
                 }
+                                
+                RollView(dice: $dice)
+                    .padding(.vertical, 25)
                 
-                Button {
-                    alert = true
-                } label: {
-                    Text("TERMINAR PARTIDA")
-                        .frame(width: 300, height: 25, alignment: .center)
-                }
-                .buttonStyle(DCButtonStyle())
-                .padding(.vertical, 25)
-                .disabled(game.rolls.isEmpty)
-                .alert("Seguro querés terminar la partida?", isPresented: $alert) {
-                    Button("Si") {
-                        game.new_game = false
-                        dismiss()
-                    }
-                    Button("No") {}
-                }
+//                Spacer()
+                
+                AttackCounterView(boat_rolls: $boat_rolls)
+
             }
         }
         .navigationTitle("Turno de \(game.players[(game.rolls.count)%game.players.count])")
@@ -111,6 +97,23 @@ struct ActiveGameView: View {
                 }
                 .disabled(game.rolls.isEmpty)
             }
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    alert = true
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                }
+                .disabled(game.rolls.isEmpty)
+                .alert("Seguro querés terminar la partida?", isPresented: $alert) {
+                    Button("Si") {
+                        game.new_game = false
+                        dismiss()
+                    }
+                    Button("No") {}
+                }
+            }
+
         }
         .navigationDestination(isPresented: $stats) {
             GameDetailView(game: game)
