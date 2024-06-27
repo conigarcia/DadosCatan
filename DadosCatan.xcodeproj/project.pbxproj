@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF211A892C2E16F800B6C792 /* GameStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF211A882C2E16F800B6C792 /* GameStats.swift */; };
 		CF4034D12BE44A560031C31B /* GameFactGroupBoxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4034D02BE44A560031C31B /* GameFactGroupBoxStyle.swift */; };
 		CF7FC54A2BA3B2EE00E12FA0 /* DadosCatanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7FC5492BA3B2EE00E12FA0 /* DadosCatanApp.swift */; };
 		CF7FC54C2BA3B2EE00E12FA0 /* GameListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7FC54B2BA3B2EE00E12FA0 /* GameListView.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CF211A882C2E16F800B6C792 /* GameStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStats.swift; sourceTree = "<group>"; };
 		CF4034D02BE44A560031C31B /* GameFactGroupBoxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFactGroupBoxStyle.swift; sourceTree = "<group>"; };
 		CF7FC5462BA3B2EE00E12FA0 /* DadosCatan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DadosCatan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF7FC5492BA3B2EE00E12FA0 /* DadosCatanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DadosCatanApp.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				CF7FC5732BA3B31200E12FA0 /* DiceRoll.swift */,
 				CF7FC5752BA3B35300E12FA0 /* Game.swift */,
 				CFE0118A2C22240C00FD4846 /* PlayerColor.swift */,
+				CF211A882C2E16F800B6C792 /* GameStats.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				CFE011892C22222400FD4846 /* DCTextFieldStyle.swift in Sources */,
 				CF8070B22BA8965600A37BE0 /* PDFGeneration.swift in Sources */,
 				CF7FC5742BA3B31200E12FA0 /* DiceRoll.swift in Sources */,
+				CF211A892C2E16F800B6C792 /* GameStats.swift in Sources */,
 				CFE011872C20F48B00FD4846 /* DCButtonStyle.swift in Sources */,
 				CFE0118F2C29ED0F00FD4846 /* AttackCounterView.swift in Sources */,
 				CF8070AC2BA7A15000A37BE0 /* PlayerFacts.swift in Sources */,

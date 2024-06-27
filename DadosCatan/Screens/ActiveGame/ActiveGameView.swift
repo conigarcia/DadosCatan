@@ -38,13 +38,7 @@ struct ActiveGameView: View {
                     Button {
                         withAnimation(Animation.bouncy) {
                             dice.alchemist = true
-                            game.rolls.append(dice)
-                            if dice.act_value == 1 {
-                                game.boat_position += 1
-                                if game.boat_position == 7 {
-                                    attack_board_shown = true
-                                }
-                            }
+                            load_roll(dice: dice)
                             dice.reset()
                         }
                     } label: {
@@ -56,13 +50,7 @@ struct ActiveGameView: View {
 
                     Button {
                         withAnimation(Animation.bouncy) {
-                            game.rolls.append(dice)
-                            if dice.act_value == 1 {
-                                game.boat_position += 1
-                                if game.boat_position == 7 {
-                                    attack_board_shown = true
-                                }
-                            }
+                            load_roll(dice: dice)
                             dice.reset()
                         }
                     } label: {
@@ -97,14 +85,7 @@ struct ActiveGameView: View {
 
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    let deleted_roll = game.rolls.removeLast()
-                    if deleted_roll.act_value == 1 {
-                        if game.boat_position > 0 {
-                            game.boat_position -= 1
-                        } else {
-                            game.boat_position = 6
-                        }
-                    }
+                    unload_roll()
                 } label: {
                     Image(systemName: "arrow.uturn.backward.circle.fill")
                 }
@@ -147,6 +128,77 @@ struct ActiveGameView: View {
                     .frame(width: 150, height: 150)
                     .padding(.bottom, 50)
             }
+        }
+    }
+    
+    func load_roll(dice: DiceRoll) {
+        /* add roll */
+        game.rolls.append(dice)
+
+        /* update boat position */
+        if dice.act_value == 1 {
+            game.boat_position += 1
+            if game.boat_position == 7 {
+                game.stats!.attack_rolls.append(game.rolls.count)
+                attack_board_shown = true
+            }
+        }
+        
+        /* update stats */
+        if !dice.alchemist {
+            game.stats!.num_values[dice.num_value-2] += 1
+            game.stats!.red_values[dice.red_value-1] += 1
+            game.stats!.yel_values[dice.yel_value-1] += 1
+        }
+        game.stats!.act_values[dice.act_value-1] += 1
+        for num in 2...12 {
+            if num == dice.num_value {
+                game.stats!.no_num_streak[num-2] = 0
+            } else {
+                game.stats!.no_num_streak[num-2] += 1
+            }
+        }
+        if dice.act_value == 2 {
+            game.stats!.yellow_red_values[dice.red_value-1] += 1
+        }
+        if dice.act_value == 3 {
+            game.stats!.green_red_values[dice.red_value-1] += 1
+        }
+        if dice.act_value == 4 {
+            game.stats!.blue_red_values[dice.red_value-1] += 1
+        }
+    }
+    
+    func unload_roll() {
+        /* remove roll */
+        let deleted_roll = game.rolls.removeLast()
+        
+        /* update boat position */
+        if deleted_roll.act_value == 1 {
+            if game.boat_position > 0 {
+                game.boat_position -= 1
+            } else {
+                game.stats!.attack_rolls.removeLast()
+                game.boat_position = 6
+            }
+        }
+        
+        /* update stats */
+        if !deleted_roll.alchemist {
+            game.stats!.num_values[deleted_roll.num_value-2] -= 1
+            game.stats!.red_values[deleted_roll.red_value-1] -= 1
+            game.stats!.yel_values[deleted_roll.yel_value-1] -= 1
+        }
+        game.stats!.act_values[deleted_roll.act_value-1] -= 1
+        game.stats!.calculate_no_num_streak()
+        if deleted_roll.act_value == 2 {
+            game.stats!.yellow_red_values[deleted_roll.red_value-1] -= 1
+        }
+        if deleted_roll.act_value == 3 {
+            game.stats!.green_red_values[deleted_roll.red_value-1] -= 1
+        }
+        if deleted_roll.act_value == 4 {
+            game.stats!.blue_red_values[deleted_roll.red_value-1] -= 1
         }
     }
 }

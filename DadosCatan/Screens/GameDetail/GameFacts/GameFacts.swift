@@ -13,8 +13,6 @@ struct GameFacts: View {
     var body: some View {
         ScrollView {
             AttackRollsCard(game: game)
-            
-//            MostAttacksCard(game: game)
 
             if game.new_game {
                 NoNumbersCards(game: game)
@@ -37,7 +35,7 @@ struct AttackRollsCard: View {
     let game: Game
     
     var body: some View {
-        let attack_rolls = game.attack_rolls().count
+        let attack_rolls = game.stats!.attack_rolls.count
         
         GroupBox {
             Fact(
@@ -52,42 +50,12 @@ struct AttackRollsCard: View {
     }
 }
 
-//struct MostAttacksCard: View {
-//    let game: Game
-//    
-//    var body: some View {
-//        let max_attacks = game.max_attack_players()
-//        
-//        GroupBox {
-//            if max_attacks.count == 1 {
-//                Fact(
-//                    image: "a1",
-//                    main_text: "\(max_attacks.first!.key) es el jugador que más hizo llegar a los bárbaros",
-//                    sec_text: "Los hizo llegar \(max_attacks.first!.value) \(max_attacks.first!.value == 1 ? "vez" : "veces")"
-//                )
-//            } else {
-//                var players = ""
-//                for ply_att in max_attacks {
-//                    players += "\(ply_att.key), "
-//                }
-//                Fact(
-//                    image: "a1",
-//                    main_text: "\(players) son los jugadores que más hicieron llegar a los bárbaros",
-//                    sec_text: "Los hicieron llegar \(max_attacks.first!.value) \(max_attacks.first!.value == 1 ? "vez" : "veces")"
-//                )
-//            }
-//        }
-//        .groupBoxStyle(.gameFact)
-//        .padding(.horizontal, 25)
-//    }
-//}
-
 struct NoNumbersCards: View {
     let game: Game
     
     var body: some View {
-        ForEach(5 ... 9, id: \.self) { num in
-            let streak = game.no_num_streak(num: num)
+        ForEach(4 ... 10, id: \.self) { num in
+            let streak = game.stats!.no_num_streak[num-2]
             if streak >= 12 {
                 GroupBox {
                     Fact(
@@ -139,14 +107,14 @@ struct DiceChartsHScroll: View {
         ScrollView(.horizontal) {
             LazyHStack {
                 GroupBox {
-                    let values = game.num_values()
+                    let values = game.stats!.num_values
                     NumChart(values: values)
                         .frame(width: 310, height: 430)
                 }
                 .groupBoxStyle(.gameFact)
                 
                 GroupBox {
-                    let red_values = game.red_values()
+                    let red_values = game.stats!.red_values
                     ColorChart(color: "r", values: red_values)
                         .frame(width: 310)
                 } label: {
@@ -155,7 +123,7 @@ struct DiceChartsHScroll: View {
                 .groupBoxStyle(.gameFact)
 
                 GroupBox {
-                    let yel_values = game.yel_values()
+                    let yel_values = game.stats!.yel_values
                     ColorChart(color: "y", values: yel_values)
                         .frame(width: 310)
                 } label: {
@@ -164,7 +132,7 @@ struct DiceChartsHScroll: View {
                 .groupBoxStyle(.gameFact)
                 
                 GroupBox {
-                    let act_values = game.act_values()
+                    let act_values = game.stats!.act_values
                     ActChart(values: act_values)
                         .frame(width: 310)
                 } label: {
@@ -273,7 +241,7 @@ struct RedDiceActionsHScroll: View {
         ScrollView(.horizontal) {
             LazyHStack {
                 ForEach(2...4, id: \.self) { act in
-                    let values: [Int] = game.act_red_values(act: act)
+                    let values: [Int] = act == 2 ? game.stats!.yellow_red_values : (act == 3 ? game.stats!.green_red_values : game.stats!.blue_red_values)
                     
                     if values.reduce(0, +) == 0 {
                         GroupBox {

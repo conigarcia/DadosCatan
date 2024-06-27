@@ -49,6 +49,7 @@ struct NewGameView: View {
                 }
                 let game = Game(name: name, players: players, colors: colors, rolls: [])
                 modelContext.insert(game)
+                game.stats = GameStats(game: game)
                 dismiss()
             } label: {
                 Text("comenzar")

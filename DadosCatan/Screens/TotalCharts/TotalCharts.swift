@@ -11,7 +11,7 @@ import SwiftData
 func get_num_values(games: [Game]) -> [Int] {
     var values = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     for game in games {
-        values = zip(values, game.num_values()).map(+)
+        values = zip(values, game.stats!.num_values).map(+)
     }
     return values
 }
@@ -19,7 +19,7 @@ func get_num_values(games: [Game]) -> [Int] {
 func get_red_values(games: [Game]) -> [Int] {
     var values = [0, 0, 0, 0, 0, 0]
     for game in games {
-        values = zip(values, game.red_values()).map(+)
+        values = zip(values, game.stats!.red_values).map(+)
     }
     return values
 }
@@ -27,7 +27,7 @@ func get_red_values(games: [Game]) -> [Int] {
 func get_yel_values(games: [Game]) -> [Int] {
     var values = [0, 0, 0, 0, 0, 0]
     for game in games {
-        values = zip(values, game.yel_values()).map(+)
+        values = zip(values, game.stats!.yel_values).map(+)
     }
     return values
 }
@@ -35,7 +35,7 @@ func get_yel_values(games: [Game]) -> [Int] {
 func get_act_values(games: [Game]) -> [Int] {
     var values = [0, 0, 0, 0]
     for game in games {
-        values = zip(values, game.act_values()).map(+)
+        values = zip(values, game.stats!.act_values).map(+)
     }
     return values
 }

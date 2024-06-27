@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GameTable: View {
     let game: Game
-    var attack_rolls: [Int] {game.attack_rolls()}
+    var attack_rolls: [Int] {game.stats!.attack_rolls}
     
     var body: some View {
         List {
