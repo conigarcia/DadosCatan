@@ -21,6 +21,7 @@ struct RollView: View {
                         .resizable()
                         .frame(width: 130, height: 130)
                         .shadow(radius: 2, x: 2, y: 2)
+                        .contentTransition(.identity)
                 }
                 .padding(.bottom, 5)
                 .padding(.trailing, 5)
@@ -33,6 +34,7 @@ struct RollView: View {
                         .resizable()
                         .frame(width: 130, height: 130)
                         .shadow(radius: 2, x: 2, y: 2)
+                        .contentTransition(.identity)
                 }
                 .padding(.bottom, 5)
                 .padding(.leading, 5)
@@ -46,6 +48,7 @@ struct RollView: View {
                     .resizable()
                     .frame(width: 130, height: 130)
                     .shadow(radius: 2, x: 2, y: 2)
+                    .contentTransition(.identity)
             }
             .padding(.top, 2)
         }
@@ -55,6 +58,10 @@ struct RollView: View {
 #Preview {
     @State var dice = DiceRoll(red_value: 1, yel_value: 1, act_value: 1)
     return NavigationStack {
-        RollView(dice: $dice)
+        ZStack {
+            Color(.appBackground)
+                .ignoresSafeArea()
+            RollView(dice: $dice)
+        }
     }
 }

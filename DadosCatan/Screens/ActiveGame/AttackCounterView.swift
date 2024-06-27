@@ -17,6 +17,7 @@ struct AttackCounterView: View {
             RoundedRectangle(cornerSize: CGSize(width: 50, height: 50))
                 .foregroundStyle(.blue)
                 .ignoresSafeArea()
+                .shadow(radius: 5)
             
             VStack {
                 Button {
