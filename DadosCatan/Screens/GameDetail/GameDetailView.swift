@@ -43,7 +43,7 @@ struct GameDetailView: View {
 
             if game.rolls.count >= game.players.count {
                 Section("Por jugador") {
-                    ForEach(game.players, id: \.self) { player in
+                    ForEach(Array(game.players.enumerated()), id: \.offset) { (idx, player) in
                         NavigationLink {
                             PlayerFacts(game: game, player: player)
                                 .navigationTitle("Estadísticas de \(player)")
@@ -52,6 +52,7 @@ struct GameDetailView: View {
                                 Image(systemName: "person.fill")
                                 Text(player)
                             }
+                            .foregroundStyle(game.colors[idx].color)
                         }
                         .listRowBackground(Color(.appSecondaryBackground))
                     }
