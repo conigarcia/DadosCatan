@@ -18,7 +18,8 @@ struct ActiveGameView: View {
     let game: Game
 
     @State var dice = DiceRoll(red_value: 1, yel_value: 1, act_value: 1)
-    @State var boat_rolls = 0
+    
+    @State var attack_board_shown = false
     
     var body: some View {
         ZStack {
@@ -26,18 +27,26 @@ struct ActiveGameView: View {
                 .ignoresSafeArea()
             
             VStack {
+                Spacer()
+                
+                RollView(dice: $dice)
+                    .padding(.vertical, 25)
+                
+                Spacer()
+
                 HStack {
                     Button {
-                        dice.alchemist = true
-                        game.rolls.append(dice)
-                        if dice.act_value == 1 {
-                            boat_rolls += 1
-                            if boat_rolls == 7 {
-                                attack = true
-                                boat_rolls = 0
+                        withAnimation(Animation.bouncy) {
+                            dice.alchemist = true
+                            game.rolls.append(dice)
+                            if dice.act_value == 1 {
+                                game.boat_position += 1
+                                if game.boat_position == 7 {
+                                    attack_board_shown = true
+                                }
                             }
+                            dice.reset()
                         }
-                        dice.reset()
                     } label: {
                         Text("alquimista")
                             .frame(width: 120, height: 25)
@@ -46,29 +55,33 @@ struct ActiveGameView: View {
                     .padding(.trailing, 20)
 
                     Button {
-                        game.rolls.append(dice)
-                        if dice.act_value == 1 {
-                            boat_rolls += 1
-                            if boat_rolls == 7 {
-                                attack = true
-                                boat_rolls = 0
+                        withAnimation(Animation.bouncy) {
+                            game.rolls.append(dice)
+                            if dice.act_value == 1 {
+                                game.boat_position += 1
+                                if game.boat_position == 7 {
+                                    attack_board_shown = true
+                                }
                             }
+                            dice.reset()
                         }
-                        dice.reset()
                     } label: {
                         Text("cargar")
                             .frame(width: 120, height: 25)
                     }
                     .buttonStyle(DCButtonStyle())
                 }
-                                
-                RollView(dice: $dice)
-                    .padding(.vertical, 25)
-                
-//                Spacer()
-                
-                AttackCounterView(boat_rolls: $boat_rolls)
-
+                .padding(.bottom, 100)
+            }
+            
+            VStack {
+                Spacer()
+                AttackCounterView(is_shown: $attack_board_shown, boat_position: game.boat_position)
+            }
+        }
+        .onChange(of: attack_board_shown) { oldVal, newVal in
+            if game.boat_position == 7 && newVal == false {
+                game.boat_position = 0
             }
         }
         .navigationTitle("Turno de \(game.players[(game.rolls.count)%game.players.count])")
@@ -86,10 +99,10 @@ struct ActiveGameView: View {
                 Button {
                     let deleted_roll = game.rolls.removeLast()
                     if deleted_roll.act_value == 1 {
-                        if boat_rolls > 0 {
-                            boat_rolls -= 1
+                        if game.boat_position > 0 {
+                            game.boat_position -= 1
                         } else {
-                            boat_rolls = 6
+                            game.boat_position = 6
                         }
                     }
                 } label: {

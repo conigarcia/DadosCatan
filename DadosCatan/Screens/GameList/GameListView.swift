@@ -21,6 +21,7 @@ struct GameListView: View {
                     NavigationLink {
                         if game.new_game {
                             ActiveGameView(game: game)
+                                .toolbar(.hidden, for: .tabBar)
                         } else {
                             GameDetailView(game: game)
                                 .navigationTitle("Estadísticas")

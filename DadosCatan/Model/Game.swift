@@ -15,6 +15,7 @@ class Game {
     var players: [String]
     var colors: [PlayerColor]?
     var rolls: [DiceRoll]
+    var boat_position = 0
     
     var new_game = true
     
