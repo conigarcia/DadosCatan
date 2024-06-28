@@ -27,11 +27,6 @@ class GameStats {
     /* returns the current (last if the game is finished) streak a number has without being rolled */
     var no_num_streak = Array(repeating: 0, count: 11)
     
-    /* amount of times each red dice face was rolled when a color action was rolled */
-    var yellow_red_values = Array(repeating: 0, count: 6)
-    var green_red_values = Array(repeating: 0, count: 6)
-    var blue_red_values = Array(repeating: 0, count: 6)
-    
     func calculate_no_num_streak() {
         no_num_streak = Array(repeating: 0, count: 11)
         for roll in self.game.rolls {
@@ -44,4 +39,9 @@ class GameStats {
             }
         }
     }
+
+    /* amount of times each red dice face was rolled when a color action was rolled */
+    var yellow_red_values = Array(repeating: 0, count: 6)
+    var green_red_values = Array(repeating: 0, count: 6)
+    var blue_red_values = Array(repeating: 0, count: 6)
 }
