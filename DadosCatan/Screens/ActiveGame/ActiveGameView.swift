@@ -139,7 +139,7 @@ struct ActiveGameView: View {
         if dice.act_value == 1 {
             game.boat_position += 1
             if game.boat_position == 7 {
-                game.stats!.attack_rolls.append(game.rolls.count)
+                game.stats!.attack_rolls.append(game.rolls.count-1)
                 attack_board_shown = true
             }
         }
