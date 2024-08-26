@@ -13,7 +13,6 @@ struct ActiveGameView: View {
     
     @State var alert = false
     @State var stats = false
-    @State var attack = false
     
     let game: Game
 
@@ -112,22 +111,6 @@ struct ActiveGameView: View {
         .navigationDestination(isPresented: $stats) {
             GameDetailView(game: game)
                 .navigationTitle("Estadísticas")
-        }
-        .popover(isPresented: $attack) {
-            VStack {
-                Text("LLEGARON LOS BÁRBAROS")
-                    .font(.system(size: 25, weight: .heavy))
-                    .multilineTextAlignment(.center)
-                    .presentationDetents([.height(330)])
-                    .padding(.top, 50)
-                
-                Spacer()
-                
-                Image("a1")
-                    .resizable()
-                    .frame(width: 150, height: 150)
-                    .padding(.bottom, 50)
-            }
         }
     }
     
