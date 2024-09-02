@@ -31,6 +31,7 @@ struct AttackCounterView: View {
                         .contentTransition(.symbolEffect(.replace))
                 }
                 .padding(.vertical, 25)
+                .padding(.horizontal, 50)
                 
                 if is_shown {
                     AttackBoard(boat_position: boat_position)
@@ -40,6 +41,18 @@ struct AttackCounterView: View {
             }
         }
         .frame(height: is_shown ? 460 : 30)
+        .gesture(
+            DragGesture()
+                .onEnded { gesture in
+                    if is_shown {
+                        if gesture.startLocation.y + 100 < gesture.location.y && abs(gesture.startLocation.x - gesture.location.x) < 100 {
+                            withAnimation(.spring) {
+                                is_shown = false
+                            }
+                        }
+                    }
+                }
+        )
     }
 }
 

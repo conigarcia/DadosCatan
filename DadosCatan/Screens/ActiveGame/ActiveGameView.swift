@@ -61,6 +61,18 @@ struct ActiveGameView: View {
                 .padding(.bottom, 100)
             }
             
+            if attack_board_shown {
+                Rectangle()
+                    .foregroundStyle(Color(.systemBackground).opacity(0.2))
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        withAnimation {
+                            attack_board_shown = false
+                        }
+                    }
+            }
+            
             VStack {
                 Spacer()
                 AttackCounterView(is_shown: $attack_board_shown, boat_position: game.boat_position)
